@@ -1,21 +1,22 @@
+import Logo from "./Logo";
+
 export default function Footer() {
   return (
-    <footer className="bg-[#0A0A0A] border-t border-[#C9A84C]/15 py-10">
+    <footer className="bg-[#081510] border-t border-[#C9A84C]/15 py-10">
       <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
-        <div>
-          <p className="font-[family-name:var(--font-playfair)] text-lg font-bold text-[#C9A84C]">
-            Daniela Campos
-          </p>
-          <p className="font-[family-name:var(--font-inter)] text-xs text-[#EDE5D4]/40 mt-1">
-            Contadora Pública · Fusagasugá, Cundinamarca
+        <div className="flex flex-col items-center md:items-start gap-2">
+          <Logo variant="full" size={36} />
+          <p className="font-[family-name:var(--font-inter)] text-xs text-[#EDE5D4]/35 mt-1">
+            Fusagasugá, Cundinamarca
           </p>
         </div>
 
         <nav className="flex flex-wrap justify-center gap-6">
           {[
+            { href: "#renta-2026", label: "Renta 2026" },
             { href: "#servicios", label: "Servicios" },
-            { href: "#vencimientos", label: "Vencimientos" },
-            { href: "#por-que", label: "¿Por qué elegirnos?" },
+            { href: "#testimonios", label: "Reseñas" },
+            { href: "#faq", label: "FAQ" },
             { href: "#contacto", label: "Contacto" },
           ].map((l) => (
             <a
@@ -35,10 +36,10 @@ export default function Footer() {
 
       {/* WhatsApp flotante */}
       <a
-        href="https://wa.me/573000000000?text=Hola%20Daniela,%20vi%20su%20sitio%20web%20y%20me%20gustar%C3%ADa%20más%20información"
+        href={`https://wa.me/573028031478?text=${encodeURIComponent("Hola Daniela, vi su sitio web y me gustaría más información")}`}
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-[#25D366] flex items-center justify-center shadow-lg hover:scale-110 transition-transform"
+        className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-14 h-14 rounded-full bg-[#25D366] flex items-center justify-center shadow-lg hover:scale-110 transition-transform"
         aria-label="WhatsApp"
       >
         <svg className="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">

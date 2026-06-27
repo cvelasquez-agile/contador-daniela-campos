@@ -1,6 +1,7 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
+import JsonLd from "@/components/JsonLd";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -14,16 +15,81 @@ const inter = Inter({
   display: "swap",
 });
 
+const BASE_URL = "https://www.danielacamposcontadora.com";
+
 export const metadata: Metadata = {
-  title: "Daniela Campos | Contadora Pública - Fusagasugá",
+  metadataBase: new URL(BASE_URL),
+  title: {
+    default: "Daniela Campos | Contadora Pública en Fusagasugá",
+    template: "%s | Daniela Campos Contadora",
+  },
   description:
-    "Estudio contable en Fusagasugá. Declaración de renta, contabilidad empresarial, nómina y revisoría fiscal. Confianza y precisión para su negocio.",
-  keywords: ["contadora Fusagasugá", "declaración de renta Fusagasugá", "contabilidad empresarial Cundinamarca", "nómina Fusagasugá"],
+    "Contadora pública en Fusagasugá, Cundinamarca. Declaración de renta 2026, contabilidad empresarial, nómina y revisoría fiscal. Consulta gratuita. ¿Cuándo vence tu renta? Calcúlalo aquí.",
+  keywords: [
+    "contadora Fusagasugá",
+    "declaración de renta Fusagasugá",
+    "declaración de renta 2026 Colombia",
+    "contabilidad empresarial Cundinamarca",
+    "contador público Fusagasugá",
+    "nómina Fusagasugá",
+    "revisoría fiscal Cundinamarca",
+    "fecha límite renta 2026",
+    "DIAN renta 2026",
+    "servicios contables Fusagasugá",
+  ],
+  authors: [{ name: "Daniela Campos", url: BASE_URL }],
+  creator: "Daniela Campos",
+  publisher: "Daniela Campos",
+  alternates: {
+    canonical: BASE_URL,
+    languages: { "es-CO": BASE_URL },
+  },
   openGraph: {
-    title: "Daniela Campos | Contadora Pública",
-    description: "Soluciones contables y tributarias en Fusagasugá, Cundinamarca.",
-    locale: "es_CO",
     type: "website",
+    locale: "es_CO",
+    url: BASE_URL,
+    siteName: "Daniela Campos – Contadora Pública",
+    title: "Daniela Campos | Contadora Pública en Fusagasugá",
+    description:
+      "Declaración de renta 2026, contabilidad, nómina y revisoría fiscal en Fusagasugá. Calcula tu fecha límite DIAN y agenda consulta gratuita.",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Daniela Campos – Contadora Pública en Fusagasugá, Cundinamarca",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Daniela Campos | Contadora Pública en Fusagasugá",
+    description:
+      "Declaración de renta 2026, contabilidad, nómina y revisoría fiscal en Fusagasugá. Calcula tu fecha límite DIAN.",
+    images: ["/og-image.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
+  },
+  manifest: "/site.webmanifest",
+  verification: {
+    // google: "TU_CÓDIGO_GOOGLE_SEARCH_CONSOLE",
   },
 };
 
@@ -33,8 +99,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className={`${playfair.variable} ${inter.variable}`}>
-      <body className="min-h-screen bg-[#0A0A0A] text-[#F5F0E8] antialiased">
+    <html lang="es-CO" className={`${playfair.variable} ${inter.variable}`}>
+      <head>
+        <JsonLd />
+      </head>
+      <body className="min-h-screen bg-[#081510] text-[#F5F0E8] antialiased">
         {children}
       </body>
     </html>

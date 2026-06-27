@@ -1,10 +1,12 @@
 "use client";
 import { useState, useEffect } from "react";
+import Logo from "./Logo";
 
 const links = [
+  { href: "#renta-2026", label: "Renta 2026" },
   { href: "#servicios", label: "Servicios" },
-  { href: "#vencimientos", label: "Vencimientos" },
-  { href: "#por-que", label: "¿Por qué elegirnos?" },
+  { href: "#testimonios", label: "Reseñas" },
+  { href: "#faq", label: "FAQ" },
   { href: "#contacto", label: "Contacto" },
 ];
 
@@ -21,12 +23,12 @@ export default function Navbar() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-[#0A0A0A]/95 backdrop-blur border-b border-[#C9A84C]/20 shadow-lg" : "bg-transparent"
+        scrolled ? "bg-[#081510]/95 backdrop-blur border-b border-[#C9A84C]/20 shadow-lg" : "bg-transparent"
       }`}
     >
       <nav className="max-w-6xl mx-auto px-6 flex items-center justify-between h-16">
-        <a href="#" className="font-[family-name:var(--font-playfair)] text-xl font-bold text-[#C9A84C] tracking-wide">
-          DC <span className="text-[#F5F0E8] font-normal text-sm tracking-widest ml-1">CONTADORA</span>
+        <a href="#" aria-label="Daniela Campos Contadora Pública">
+          <Logo variant="full" size={38} />
         </a>
 
         {/* Desktop */}
@@ -43,19 +45,19 @@ export default function Navbar() {
           ))}
           <li>
             <a
-              href="https://wa.me/573000000000?text=Hola%20Daniela,%20me%20gustar%C3%ADa%20más%20información%20sobre%20sus%20servicios"
+              href={`https://wa.me/573028031478?text=${encodeURIComponent("Hola Daniela, me gustaría más información sobre sus servicios")}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-5 py-2 text-sm border border-[#C9A84C] text-[#C9A84C] hover:bg-[#C9A84C] hover:text-[#0A0A0A] transition-all rounded font-semibold tracking-wider"
+              className="px-5 py-2 text-sm border border-[#C9A84C] text-[#C9A84C] hover:bg-[#C9A84C] hover:text-[#081510] transition-all rounded font-semibold tracking-wider"
             >
               Consulta Gratis
             </a>
           </li>
         </ul>
 
-        {/* Mobile toggle */}
+        {/* Mobile toggle — 44px touch target */}
         <button
-          className="md:hidden text-[#C9A84C] p-2"
+          className="md:hidden text-[#C9A84C] p-3 -mr-1"
           onClick={() => setOpen(!open)}
           aria-label="Menú"
         >
@@ -71,22 +73,22 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {open && (
-        <div className="md:hidden bg-[#1A1A1A] border-t border-[#C9A84C]/20 px-6 py-4 flex flex-col gap-4">
+        <div className="md:hidden bg-[#162B1E] border-t border-[#C9A84C]/20 px-6 py-4 flex flex-col gap-1">
           {links.map((l) => (
             <a
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
-              className="text-[#EDE5D4]/80 hover:text-[#C9A84C] tracking-wider uppercase text-sm"
+              className="text-[#EDE5D4]/80 hover:text-[#C9A84C] tracking-wider uppercase text-sm py-3 border-b border-[#C9A84C]/10 last:border-0"
             >
               {l.label}
             </a>
           ))}
           <a
-            href="https://wa.me/573000000000"
+            href="https://wa.me/573028031478"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-center py-2 border border-[#C9A84C] text-[#C9A84C] rounded text-sm font-semibold"
+            className="text-center py-3 mt-2 border border-[#C9A84C] text-[#C9A84C] rounded text-sm font-semibold"
           >
             Consulta Gratis
           </a>
