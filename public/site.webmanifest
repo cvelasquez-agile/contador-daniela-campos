@@ -1,0 +1,13 @@
+{
+  "name": "Daniela Campos – Contadora Pública",
+  "short_name": "Daniela Campos",
+  "description": "Contadora pública en Fusagasugá, Cundinamarca. Declaración de renta 2026, contabilidad y revisoría fiscal.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#081510",
+  "theme_color": "#081510",
+  "icons": [
+    { "src": "/icon", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/icon", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

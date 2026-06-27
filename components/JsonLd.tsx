@@ -10,7 +10,6 @@
           "Estudio contable en Fusagasugá, Cundinamarca. Servicios de declaración de renta, contabilidad empresarial, nómina, seguridad social y revisoría fiscal para personas naturales y empresas.",
         url: "https://www.danielacamposcontadora.com",
         telephone: "+573028031478",
-        email: "daniela@contadorafusagasuga.com",
         priceRange: "$$",
         currenciesAccepted: "COP",
         paymentAccepted: "Efectivo, Transferencia bancaria",
