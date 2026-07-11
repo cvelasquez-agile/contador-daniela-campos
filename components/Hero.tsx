@@ -146,7 +146,7 @@ function CalculatorCard({
         <h2 className="font-[family-name:var(--font-playfair)] text-lg font-bold text-[#F5F0E8] mb-0.5">
           Calcula tu fecha límite
         </h2>
-        <p className="font-[family-name:var(--font-inter)] text-[11px] text-[#EDE5D4]/40 mb-4">
+        <p className="font-[family-name:var(--font-inter)] text-xs text-[#EDE5D4]/60 mb-4">
           Dos últimos dígitos de tu cédula
         </p>
 
@@ -171,7 +171,7 @@ function CalculatorCard({
         {result && urgency ? (
           <div className="space-y-3">
             <div className="flex items-center justify-between">
-              <span className="font-[family-name:var(--font-inter)] text-[11px] text-[#EDE5D4]/40 tracking-wider uppercase">
+              <span className="font-[family-name:var(--font-inter)] text-xs text-[#EDE5D4]/60 tracking-wider uppercase">
                 Tu fecha límite
               </span>
               <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold border font-[family-name:var(--font-inter)] ${urgency.pill}`}>
@@ -185,7 +185,7 @@ function CalculatorCard({
             >
               {result.label}
             </p>
-            <p className="font-[family-name:var(--font-inter)] text-[11px] text-[#EDE5D4]/40">
+            <p className="font-[family-name:var(--font-inter)] text-xs text-[#EDE5D4]/60">
               {urgency.msg}
             </p>
             <a
@@ -203,12 +203,12 @@ function CalculatorCard({
           <div className="text-center py-2">
             <div className="flex justify-center gap-1 mb-2">
               {["Ago", "Sep", "Oct", "Nov", "Dic"].map((m) => (
-                <span key={m} className="font-[family-name:var(--font-inter)] text-[10px] text-[#EDE5D4]/20 px-1.5 py-0.5 border border-[#EDE5D4]/8 rounded">
+                <span key={m} className="font-[family-name:var(--font-inter)] text-xs text-[#EDE5D4]/45 px-1.5 py-0.5 border border-[#EDE5D4]/15 rounded">
                   {m}
                 </span>
               ))}
             </div>
-            <p className="font-[family-name:var(--font-inter)] text-[11px] text-[#EDE5D4]/30 leading-relaxed">
+            <p className="font-[family-name:var(--font-inter)] text-xs text-[#EDE5D4]/55 leading-relaxed">
               Sanciones desde{" "}
               <span className="text-[#C9A84C]/70 font-semibold">$470.000 COP</span>
               {" "}por extemporaneidad
@@ -218,7 +218,7 @@ function CalculatorCard({
       </div>
 
       <div className="px-6 pb-4">
-        <p className="font-[family-name:var(--font-inter)] text-[10px] text-[#EDE5D4]/20 text-center">
+        <p className="font-[family-name:var(--font-inter)] text-xs text-[#EDE5D4]/45 text-center">
           Calendario estimado · Confirme con el decreto DIAN oficial
         </p>
       </div>
@@ -366,9 +366,10 @@ export default function Hero() {
           {/* Portrait */}
           <div className="relative w-full overflow-hidden bg-[#081510]">
             <Image
-              src="/daniela.png"
+              src="/daniela.webp"
               alt="Daniela Campos, Contadora Pública en Fusagasugá"
               fill
+              sizes="(min-width: 1024px) 45vw, 0px"
               className="object-contain object-bottom"
               priority
             />

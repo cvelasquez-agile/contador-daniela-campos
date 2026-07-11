@@ -1,7 +1,7 @@
-﻿"use client";
+"use client";
 import { useState, useRef } from "react";
 
-// DIAN 2026 - Renta a�o gravable 2025 � personas naturales
+// DIAN 2026 - Renta año gravable 2025 – personas naturales
 // Pattern based on official DIAN schedules (update when Decreto 2025 is published)
 const CALENDARIO: Record<string, { fecha: Date; label: string }> = {
   "01": { fecha: new Date(2026, 7, 11), label: "11 Ago 2026" },
@@ -133,18 +133,18 @@ export default function Calculadora() {
 
   const semaforo =
     resultado === null ? null
-    : resultado.dias <= 30 ? { color: "text-red-400", border: "border-red-500/50 bg-red-950/30", badge: "bg-red-500/20 text-red-400 border-red-500/40", texto: "�Urgente! Quedan pocos d�as" }
-    : resultado.dias <= 90 ? { color: "text-yellow-400", border: "border-yellow-500/50 bg-yellow-950/20", badge: "bg-yellow-500/20 text-yellow-400 border-yellow-500/40", texto: "Pr�ximo � prepare sus documentos" }
-    : { color: "text-emerald-400", border: "border-emerald-500/40 bg-emerald-950/20", badge: "bg-emerald-500/20 text-emerald-400 border-emerald-500/40", texto: "Tiempo disponible � planifique con calma" };
+    : resultado.dias <= 30 ? { color: "text-red-400", border: "border-red-500/50 bg-red-950/30", badge: "bg-red-500/20 text-red-400 border-red-500/40", texto: "¡Urgente! Quedan pocos días" }
+    : resultado.dias <= 90 ? { color: "text-yellow-400", border: "border-yellow-500/50 bg-yellow-950/20", badge: "bg-yellow-500/20 text-yellow-400 border-yellow-500/40", texto: "Próximo – prepare sus documentos" }
+    : { color: "text-emerald-400", border: "border-emerald-500/40 bg-emerald-950/20", badge: "bg-emerald-500/20 text-emerald-400 border-emerald-500/40", texto: "Tiempo disponible – planifique con calma" };
 
   const waText = resultado
-    ? `Hola Daniela, calcul� mi fecha l�mite de renta 2026: *${resultado.label}* (${resultado.dias} d�as). Me gustar�a que me ayudara a prepararla a tiempo.`
-    : "Hola Daniela, quiero informaci�n sobre la declaraci�n de renta 2026.";
+    ? `Hola Daniela, calculé mi fecha límite de renta 2026: *${resultado.label}* (${resultado.dias} días). Me gustaría que me ayudara a prepararla a tiempo.`
+    : "Hola Daniela, quiero información sobre la declaración de renta 2026.";
 
   return (
     <section
       id="calculadora"
-      aria-label="Calculadora de fecha l�mite renta DIAN 2026"
+      aria-label="Calculadora de fecha límite renta DIAN 2026"
       className="py-20 bg-[#0A1A12]"
     >
       <div className="max-w-3xl mx-auto px-6">
@@ -156,7 +156,7 @@ export default function Calculadora() {
           <div className="p-8 md:p-10">
             {/* Badge */}
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#C9A84C]/40 bg-[#C9A84C]/10 text-[#C9A84C] text-xs font-semibold tracking-widest mb-6 font-[family-name:var(--font-inter)]">
-              DIAN � RENTA 2026
+              DIAN · RENTA 2026
             </div>
 
             {/* Heading */}
@@ -165,11 +165,11 @@ export default function Calculadora() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
               <h2 className="font-[family-name:var(--font-playfair)] text-2xl md:text-3xl font-bold text-[#F5F0E8] leading-snug">
-                Calcula tu fecha l�mite para declarar renta
+                Calcula tu fecha límite para declarar renta
               </h2>
             </div>
             <p className="font-[family-name:var(--font-inter)] text-sm text-[#EDE5D4]/50 mb-8 ml-9">
-              Ingresa los <strong className="text-[#EDE5D4]/80">dos �ltimos d�gitos</strong> de tu c�dula y te decimos exactamente cu�ndo vence.
+              Ingresa los <strong className="text-[#EDE5D4]/80">dos últimos dígitos</strong> de tu cédula y te decimos exactamente cuándo vence.
             </p>
 
             {/* Input */}
@@ -185,12 +185,12 @@ export default function Calculadora() {
                 value={digitos}
                 onChange={(e) => handleChange(e.target.value)}
                 placeholder="Ej: 27"
-                aria-label="Dos �ltimos d�gitos de tu c�dula"
+                aria-label="Dos últimos dígitos de tu cédula"
                 className="w-full bg-[#081510] border border-[#C9A84C]/25 hover:border-[#C9A84C]/50 focus:border-[#C9A84C] rounded-xl px-6 py-4 text-center text-3xl font-[family-name:var(--font-playfair)] font-bold text-[#F5F0E8] placeholder-[#EDE5D4]/15 focus:outline-none transition-all tracking-[0.3em]"
               />
               {digitos.length > 0 && digitos.length < 2 && (
                 <p className="absolute -bottom-5 left-0 right-0 text-center text-xs text-[#C9A84C]/60 font-[family-name:var(--font-inter)]">
-                  Ingresa el segundo d�gito�
+                  Ingresa el segundo dígito…
                 </p>
               )}
             </div>
@@ -198,7 +198,7 @@ export default function Calculadora() {
             {/* Helper */}
             {!resultado && (
               <p className="font-[family-name:var(--font-inter)] text-xs text-[#EDE5D4]/35 text-center mt-7">
-                Evita sanciones de extemporaneidad DIAN � para 2026 inician en{" "}
+                Evita sanciones de extemporaneidad DIAN – para 2026 inician en{" "}
                 <span className="font-semibold text-[#C9A84C]/80">$470.000 COP</span>
               </p>
             )}
@@ -209,14 +209,14 @@ export default function Calculadora() {
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                   <div>
                     <p className="font-[family-name:var(--font-inter)] text-xs text-[#EDE5D4]/50 mb-1 tracking-wider">
-                      TU FECHA L�MITE
+                      TU FECHA LÍMITE
                     </p>
                     <p className={`font-[family-name:var(--font-playfair)] text-4xl font-bold ${semaforo.color}`}>
                       {resultado.label}
                     </p>
                     <div className={`inline-flex items-center gap-1.5 mt-2 px-2.5 py-1 rounded-full border text-xs font-[family-name:var(--font-inter)] font-semibold ${semaforo.badge}`}>
                       <span className={`w-1.5 h-1.5 rounded-full ${semaforo.color.replace("text-", "bg-")}`} />
-                      {resultado.dias > 0 ? `${resultado.dias} d�as restantes` : resultado.dias === 0 ? "Vence hoy" : "Vencido"}
+                      {resultado.dias > 0 ? `${resultado.dias} días restantes` : resultado.dias === 0 ? "Vence hoy" : "Vencido"}
                     </div>
                   </div>
 
@@ -243,8 +243,8 @@ export default function Calculadora() {
         </div>
 
         {/* Disclaimer */}
-        <p className="text-center text-xs text-[#EDE5D4]/25 mt-4 font-[family-name:var(--font-inter)]">
-          Fechas estimadas basadas en el patr�n DIAN. Verifique con el decreto oficial cuando sea publicado.
+        <p className="text-center text-xs text-[#EDE5D4]/45 mt-4 font-[family-name:var(--font-inter)]">
+          Fechas estimadas basadas en el patrón DIAN. Verifique con el decreto oficial cuando sea publicado.
         </p>
       </div>
     </section>

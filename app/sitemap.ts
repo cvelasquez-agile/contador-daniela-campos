@@ -10,23 +10,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 1,
     },
-    {
-      url: `${BASE}/#servicios`,
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0.8,
-    },
-    {
-      url: `${BASE}/#calculadora`,
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0.9,
-    },
-    {
-      url: `${BASE}/#contacto`,
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0.7,
-    },
   ];
 }

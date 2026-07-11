@@ -1,4 +1,4 @@
-﻿const valores = [
+const valores = [
   { label: "Confianza", desc: "Relaciones duraderas basadas en la honestidad y el cumplimiento." },
   { label: "Transparencia", desc: "Comunicación clara, tarifas sin costos ocultos, sin letra pequeña." },
   { label: "Responsabilidad", desc: "Cada obligación tributaria, entregada a tiempo y sin errores." },
@@ -29,7 +29,7 @@ export default function Valores() {
               <p className="font-[family-name:var(--font-playfair)] font-bold text-[#C9A84C] text-sm leading-tight">
                 {v.label}
               </p>
-              <p className="font-[family-name:var(--font-inter)] text-[11px] text-[#EDE5D4]/35 leading-relaxed">
+              <p className="font-[family-name:var(--font-inter)] text-xs text-[#EDE5D4]/55 leading-relaxed">
                 {v.desc}
               </p>
             </div>

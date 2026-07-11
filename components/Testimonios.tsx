@@ -98,7 +98,7 @@ export default function Testimonios() {
                   <p className="font-[family-name:var(--font-inter)] text-xs font-semibold text-[#F5F0E8]">
                     {r.name}
                   </p>
-                  <p className="font-[family-name:var(--font-inter)] text-[11px] text-[#EDE5D4]/35 mt-0.5">
+                  <p className="font-[family-name:var(--font-inter)] text-xs text-[#EDE5D4]/55 mt-0.5">
                     {r.role}
                   </p>
                 </div>

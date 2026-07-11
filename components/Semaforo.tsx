@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import { useMemo, useState } from "react";
 
 interface Vencimiento {
@@ -10,49 +10,49 @@ interface Vencimiento {
 
 const VENCIMIENTOS: Vencimiento[] = [
   // IVA bimestral
-  { fecha: "01-15", descripcion: "IVA Bimestral (Nov�Dic)", tipo: "iva", entidad: "DIAN" },
-  { fecha: "03-10", descripcion: "IVA Bimestral (Ene�Feb)", tipo: "iva", entidad: "DIAN" },
-  { fecha: "05-12", descripcion: "IVA Bimestral (Mar�Abr)", tipo: "iva", entidad: "DIAN" },
-  { fecha: "07-14", descripcion: "IVA Bimestral (May�Jun)", tipo: "iva", entidad: "DIAN" },
-  { fecha: "09-08", descripcion: "IVA Bimestral (Jul�Ago)", tipo: "iva", entidad: "DIAN" },
-  { fecha: "11-10", descripcion: "IVA Bimestral (Sep�Oct)", tipo: "iva", entidad: "DIAN" },
+  { fecha: "01-15", descripcion: "IVA Bimestral (Nov–Dic)", tipo: "iva", entidad: "DIAN" },
+  { fecha: "03-10", descripcion: "IVA Bimestral (Ene–Feb)", tipo: "iva", entidad: "DIAN" },
+  { fecha: "05-12", descripcion: "IVA Bimestral (Mar–Abr)", tipo: "iva", entidad: "DIAN" },
+  { fecha: "07-14", descripcion: "IVA Bimestral (May–Jun)", tipo: "iva", entidad: "DIAN" },
+  { fecha: "09-08", descripcion: "IVA Bimestral (Jul–Ago)", tipo: "iva", entidad: "DIAN" },
+  { fecha: "11-10", descripcion: "IVA Bimestral (Sep–Oct)", tipo: "iva", entidad: "DIAN" },
   // Renta
-  { fecha: "04-07", descripcion: "Renta personas jur�dicas (grandes)", tipo: "renta", entidad: "DIAN" },
-  { fecha: "04-09", descripcion: "Renta personas jur�dicas", tipo: "renta", entidad: "DIAN" },
+  { fecha: "04-07", descripcion: "Renta personas jurídicas (grandes)", tipo: "renta", entidad: "DIAN" },
+  { fecha: "04-09", descripcion: "Renta personas jurídicas", tipo: "renta", entidad: "DIAN" },
   { fecha: "08-12", descripcion: "Renta personas naturales (grandes)", tipo: "renta", entidad: "DIAN" },
   { fecha: "08-19", descripcion: "Renta personas naturales", tipo: "renta", entidad: "DIAN" },
-  // Retenci�n en la fuente
-  { fecha: "01-22", descripcion: "Retenci�n en la fuente (Dic)", tipo: "retencion", entidad: "DIAN" },
-  { fecha: "02-24", descripcion: "Retenci�n en la fuente (Ene)", tipo: "retencion", entidad: "DIAN" },
-  { fecha: "03-24", descripcion: "Retenci�n en la fuente (Feb)", tipo: "retencion", entidad: "DIAN" },
-  { fecha: "04-22", descripcion: "Retenci�n en la fuente (Mar)", tipo: "retencion", entidad: "DIAN" },
-  { fecha: "05-26", descripcion: "Retenci�n en la fuente (Abr)", tipo: "retencion", entidad: "DIAN" },
-  { fecha: "06-23", descripcion: "Retenci�n en la fuente (May)", tipo: "retencion", entidad: "DIAN" },
-  { fecha: "07-21", descripcion: "Retenci�n en la fuente (Jun)", tipo: "retencion", entidad: "DIAN" },
-  { fecha: "08-25", descripcion: "Retenci�n en la fuente (Jul)", tipo: "retencion", entidad: "DIAN" },
-  { fecha: "09-22", descripcion: "Retenci�n en la fuente (Ago)", tipo: "retencion", entidad: "DIAN" },
-  { fecha: "10-20", descripcion: "Retenci�n en la fuente (Sep)", tipo: "retencion", entidad: "DIAN" },
-  { fecha: "11-24", descripcion: "Retenci�n en la fuente (Oct)", tipo: "retencion", entidad: "DIAN" },
-  { fecha: "12-22", descripcion: "Retenci�n en la fuente (Nov)", tipo: "retencion", entidad: "DIAN" },
+  // Retención en la fuente
+  { fecha: "01-22", descripcion: "Retención en la fuente (Dic)", tipo: "retencion", entidad: "DIAN" },
+  { fecha: "02-24", descripcion: "Retención en la fuente (Ene)", tipo: "retencion", entidad: "DIAN" },
+  { fecha: "03-24", descripcion: "Retención en la fuente (Feb)", tipo: "retencion", entidad: "DIAN" },
+  { fecha: "04-22", descripcion: "Retención en la fuente (Mar)", tipo: "retencion", entidad: "DIAN" },
+  { fecha: "05-26", descripcion: "Retención en la fuente (Abr)", tipo: "retencion", entidad: "DIAN" },
+  { fecha: "06-23", descripcion: "Retención en la fuente (May)", tipo: "retencion", entidad: "DIAN" },
+  { fecha: "07-21", descripcion: "Retención en la fuente (Jun)", tipo: "retencion", entidad: "DIAN" },
+  { fecha: "08-25", descripcion: "Retención en la fuente (Jul)", tipo: "retencion", entidad: "DIAN" },
+  { fecha: "09-22", descripcion: "Retención en la fuente (Ago)", tipo: "retencion", entidad: "DIAN" },
+  { fecha: "10-20", descripcion: "Retención en la fuente (Sep)", tipo: "retencion", entidad: "DIAN" },
+  { fecha: "11-24", descripcion: "Retención en la fuente (Oct)", tipo: "retencion", entidad: "DIAN" },
+  { fecha: "12-22", descripcion: "Retención en la fuente (Nov)", tipo: "retencion", entidad: "DIAN" },
   // PILA
-  { fecha: "01-10", descripcion: "PILA (Dic) � empleadores", tipo: "pila", entidad: "UGPP" },
-  { fecha: "02-10", descripcion: "PILA (Ene) � empleadores", tipo: "pila", entidad: "UGPP" },
-  { fecha: "03-10", descripcion: "PILA (Feb) � empleadores", tipo: "pila", entidad: "UGPP" },
-  { fecha: "04-10", descripcion: "PILA (Mar) � empleadores", tipo: "pila", entidad: "UGPP" },
-  { fecha: "05-12", descripcion: "PILA (Abr) � empleadores", tipo: "pila", entidad: "UGPP" },
-  { fecha: "06-10", descripcion: "PILA (May) � empleadores", tipo: "pila", entidad: "UGPP" },
-  { fecha: "07-10", descripcion: "PILA (Jun) � empleadores", tipo: "pila", entidad: "UGPP" },
-  { fecha: "08-11", descripcion: "PILA (Jul) � empleadores", tipo: "pila", entidad: "UGPP" },
-  { fecha: "09-10", descripcion: "PILA (Ago) � empleadores", tipo: "pila", entidad: "UGPP" },
-  { fecha: "10-10", descripcion: "PILA (Sep) � empleadores", tipo: "pila", entidad: "UGPP" },
-  { fecha: "11-10", descripcion: "PILA (Oct) � empleadores", tipo: "pila", entidad: "UGPP" },
-  { fecha: "12-10", descripcion: "PILA (Nov) � empleadores", tipo: "pila", entidad: "UGPP" },
+  { fecha: "01-10", descripcion: "PILA (Dic) – empleadores", tipo: "pila", entidad: "UGPP" },
+  { fecha: "02-10", descripcion: "PILA (Ene) – empleadores", tipo: "pila", entidad: "UGPP" },
+  { fecha: "03-10", descripcion: "PILA (Feb) – empleadores", tipo: "pila", entidad: "UGPP" },
+  { fecha: "04-10", descripcion: "PILA (Mar) – empleadores", tipo: "pila", entidad: "UGPP" },
+  { fecha: "05-12", descripcion: "PILA (Abr) – empleadores", tipo: "pila", entidad: "UGPP" },
+  { fecha: "06-10", descripcion: "PILA (May) – empleadores", tipo: "pila", entidad: "UGPP" },
+  { fecha: "07-10", descripcion: "PILA (Jun) – empleadores", tipo: "pila", entidad: "UGPP" },
+  { fecha: "08-11", descripcion: "PILA (Jul) – empleadores", tipo: "pila", entidad: "UGPP" },
+  { fecha: "09-10", descripcion: "PILA (Ago) – empleadores", tipo: "pila", entidad: "UGPP" },
+  { fecha: "10-10", descripcion: "PILA (Sep) – empleadores", tipo: "pila", entidad: "UGPP" },
+  { fecha: "11-10", descripcion: "PILA (Oct) – empleadores", tipo: "pila", entidad: "UGPP" },
+  { fecha: "12-10", descripcion: "PILA (Nov) – empleadores", tipo: "pila", entidad: "UGPP" },
 ];
 
 const TIPO_LABELS: Record<string, string> = {
   iva: "IVA",
   renta: "Renta",
-  retencion: "Retenci�n",
+  retencion: "Retención",
   pila: "PILA",
 };
 
@@ -100,10 +100,10 @@ export default function Semaforo() {
             Herramienta gratuita
           </p>
           <h2 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl font-bold text-[#F5F0E8] mb-4">
-            Sem�foro de Vencimientos
+            Semáforo de Vencimientos
           </h2>
           <p className="font-[family-name:var(--font-inter)] text-[#EDE5D4]/60 max-w-xl mx-auto text-sm leading-relaxed mb-6">
-            Pr�ximas obligaciones tributarias y de seguridad social. Actualizadas
+            Próximas obligaciones tributarias y de seguridad social. Actualizadas
             conforme al calendario DIAN.
           </p>
           <div className="w-16 h-px bg-gradient-to-r from-transparent via-[#C9A84C] to-transparent mx-auto mb-8" />
@@ -111,9 +111,9 @@ export default function Semaforo() {
           {/* Leyenda */}
           <div className="flex flex-wrap justify-center gap-6 mb-8">
             {[
-              { dot: "bg-red-500", label: "= 7 d�as � Urgente" },
-              { dot: "bg-yellow-400", label: "= 20 d�as � Pr�ximo" },
-              { dot: "bg-emerald-500", label: "+ 20 d�as � Pendiente" },
+              { dot: "bg-red-500", label: "= 7 días – Urgente" },
+              { dot: "bg-yellow-400", label: "= 20 días – Próximo" },
+              { dot: "bg-emerald-500", label: "+ 20 días – Pendiente" },
             ].map((l) => (
               <div key={l.label} className="flex items-center gap-2 text-xs text-[#EDE5D4]/50 font-[family-name:var(--font-inter)]">
                 <span className={`w-2 h-2 rounded-full ${l.dot}`} />
@@ -142,7 +142,7 @@ export default function Semaforo() {
 
         {items.length === 0 ? (
           <p className="text-center py-16 text-[#EDE5D4]/40 font-[family-name:var(--font-inter)] text-sm">
-            No hay vencimientos pr�ximos (90 d�as) para este filtro.
+            No hay vencimientos próximos (90 días) para este filtro.
           </p>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -167,7 +167,7 @@ export default function Semaforo() {
                     <div className="flex items-center gap-2">
                       <span className={`w-2 h-2 rounded-full ${sem.dot}`} />
                       <span className="font-[family-name:var(--font-inter)] text-xs text-[#EDE5D4]/50">
-                        {v.dias === 0 ? "Hoy" : v.dias === 1 ? "Ma�ana" : `${v.dias} d�as`}
+                        {v.dias === 0 ? "Hoy" : v.dias === 1 ? "Mañana" : `${v.dias} días`}
                       </span>
                     </div>
                     <span className="font-[family-name:var(--font-playfair)] text-sm font-bold text-[#C9A84C]">
@@ -182,7 +182,7 @@ export default function Semaforo() {
 
         <div className="mt-10 text-center">
           <p className="font-[family-name:var(--font-inter)] text-xs text-[#EDE5D4]/30 mb-4">
-            �Necesita ayuda con alguna de estas obligaciones?
+            ¿Necesita ayuda con alguna de estas obligaciones?
           </p>
           <a
             href="https://wa.me/573028031478?text=Hola%20Daniela,%20necesito%20ayuda%20con%20un%20vencimiento"

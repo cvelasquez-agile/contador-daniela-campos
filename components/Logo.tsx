@@ -1,4 +1,4 @@
-﻿interface LogoProps {
+interface LogoProps {
   variant?: "icon" | "full" | "stacked";
   className?: string;
   size?: number;
@@ -8,17 +8,17 @@ const gold = "#C9A84C";
 const goldLight = "#E2C97E";
 const cream = "#F5F0E8";
 
-export default function Logo({ variant = "full", className = "", size = 40 }: LogoProps) {
-  const hex = (cx: number, cy: number, r: number) => {
-    const pts = [];
-    for (let i = 0; i < 6; i++) {
-      const angle = (Math.PI / 180) * (60 * i);
-      pts.push(`${cx + r * Math.cos(angle)},${cy + r * Math.sin(angle)}`);
-    }
-    return pts.join(" ");
-  };
+function hex(cx: number, cy: number, r: number) {
+  const pts = [];
+  for (let i = 0; i < 6; i++) {
+    const angle = (Math.PI / 180) * (60 * i);
+    pts.push(`${cx + r * Math.cos(angle)},${cy + r * Math.sin(angle)}`);
+  }
+  return pts.join(" ");
+}
 
-  const Icon = ({ s = size, className: cls = "" }: { s?: number; className?: string }) => (
+function LogoIcon({ s, className: cls = "" }: { s: number; className?: string }) {
+  return (
     <svg
       width={s}
       height={s}
@@ -66,13 +66,15 @@ export default function Logo({ variant = "full", className = "", size = 40 }: Lo
       />
     </svg>
   );
+}
 
-  if (variant === "icon") return <Icon s={size} className={className} />;
+export default function Logo({ variant = "full", className = "", size = 40 }: LogoProps) {
+  if (variant === "icon") return <LogoIcon s={size} className={className} />;
 
   if (variant === "stacked") {
     return (
       <div className={`flex flex-col items-center gap-2 ${className}`}>
-        <Icon s={size} />
+        <LogoIcon s={size} />
         <div className="text-center">
           <p
             className="font-[family-name:var(--font-playfair)] font-bold leading-none"
@@ -94,7 +96,7 @@ export default function Logo({ variant = "full", className = "", size = 40 }: Lo
   // variant === "full" — horizontal
   return (
     <div className={`flex items-center gap-3 ${className}`}>
-      <Icon s={size} />
+      <LogoIcon s={size} />
       <div>
         <p
           className="font-[family-name:var(--font-playfair)] font-bold leading-tight"

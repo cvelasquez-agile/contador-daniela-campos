@@ -1,4 +1,4 @@
-﻿export default function JsonLd() {
+export default function JsonLd() {
   const schema = {
     "@context": "https://schema.org",
     "@graph": [

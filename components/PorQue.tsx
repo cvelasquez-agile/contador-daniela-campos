@@ -1,38 +1,38 @@
-﻿const WA = "573028031478";
+const WA = "573028031478";
 
 const manifesto = [
   {
     num: "01",
     statement: "No somos una firma grande. Somos su contadora.",
-    body: "Cada cliente habla directamente con Daniela � sin asistentes, sin call centers. Su situaci�n no es un ticket en una cola.",
+    body: "Cada cliente habla directamente con Daniela – sin asistentes, sin call centers. Su situación no es un ticket en una cola.",
   },
   {
     num: "02",
-    statement: "Conocemos Fusagasug� como nadie.",
+    statement: "Conocemos Fusagasugá como nadie.",
     body: "El tejido empresarial local, los ciclos del agro, los negocios que crecen en la Autopista Sur. Eso no se aprende en un manual tributario.",
   },
   {
     num: "03",
-    statement: "Ning�n vencimiento se nos ha pasado. Ninguno.",
-    body: "Sistema de alertas propio, recordatorios proactivos y preparaci�n anticipada. Las sanciones DIAN existen para quienes no tienen a Daniela.",
+    statement: "Ningún vencimiento se nos ha pasado. Ninguno.",
+    body: "Sistema de alertas propio, recordatorios proactivos y preparación anticipada. Las sanciones DIAN existen para quienes no tienen a Daniela.",
   },
 ];
 
 const proceso = [
   {
     paso: "1",
-    titulo: "Diagn�stico gratuito",
-    desc: "Revisamos su situaci�n tributaria y contable sin costo. 30 minutos que pueden ahorrarle millones.",
+    titulo: "Diagnóstico gratuito",
+    desc: "Revisamos su situación tributaria y contable sin costo. 30 minutos que pueden ahorrarle millones.",
   },
   {
     paso: "2",
     titulo: "Propuesta a su medida",
-    desc: "Sin paquetes gen�ricos. El plan se adapta al tama�o, sector y necesidades reales de su negocio.",
+    desc: "Sin paquetes genéricos. El plan se adapta al tamaño, sector y necesidades reales de su negocio.",
   },
   {
     paso: "3",
-    titulo: "Ejecuci�n y tranquilidad",
-    desc: "Usted se dedica a su negocio. Daniela se encarga de que todo est� al d�a, siempre.",
+    titulo: "Ejecución y tranquilidad",
+    desc: "Usted se dedica a su negocio. Daniela se encarga de que todo esté al día, siempre.",
   },
 ];
 
@@ -44,13 +44,13 @@ export default function PorQue() {
       <div className="max-w-6xl mx-auto px-6 pt-24 pb-8">
         <div className="flex items-center gap-4 mb-16">
           <span className="font-[family-name:var(--font-inter)] text-xs text-[#C9A84C] tracking-[0.3em] uppercase">
-            Por qu� Daniela
+            Por qué Daniela
           </span>
           <span className="flex-1 h-px bg-[#C9A84C]/20" />
         </div>
 
         <div className="space-y-0">
-          {manifesto.map((m, i) => (
+          {manifesto.map((m) => (
             <div
               key={m.num}
               className="group grid grid-cols-1 md:grid-cols-[72px_1fr_1fr] gap-6 md:gap-10 py-10 border-b border-[#C9A84C]/10 hover:border-[#C9A84C]/30 transition-colors"
@@ -80,7 +80,7 @@ export default function PorQue() {
         </div>
       </div>
 
-      {/* -- PROCESO � full-width dark band -- */}
+      {/* -- PROCESO – full-width dark band -- */}
       <div className="relative mt-16 bg-[#0F2016] border-t border-b border-[#C9A84C]/15 overflow-hidden">
         {/* Ghost number */}
         <span
@@ -93,7 +93,7 @@ export default function PorQue() {
 
         <div className="relative max-w-6xl mx-auto px-6 py-20">
           <p className="font-[family-name:var(--font-inter)] text-xs text-[#C9A84C] tracking-[0.3em] uppercase mb-12">
-            As� trabajamos
+            Así trabajamos
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-0 md:gap-0">
@@ -143,7 +143,7 @@ export default function PorQue() {
             className="font-[family-name:var(--font-playfair)] text-[#C9A84C]/15 font-bold leading-none select-none block mb-4"
             style={{ fontSize: "6rem", lineHeight: 0.8 }}
           >
-            "
+            &ldquo;
           </span>
 
           <blockquote className="relative">
@@ -151,8 +151,8 @@ export default function PorQue() {
               className="font-[family-name:var(--font-playfair)] font-bold italic text-[#F5F0E8] leading-snug mb-8"
               style={{ fontSize: "clamp(1.4rem,3vw,2.2rem)" }}
             >
-              Mi compromiso no termina cuando entrego la declaraci�n.
-              Termina cuando usted entiende exactamente qu� pag� y por qu�.
+              Mi compromiso no termina cuando entrego la declaración.
+              Termina cuando usted entiende exactamente qué pagó y por qué.
             </p>
             <footer className="flex items-center gap-4">
               <div>
@@ -160,7 +160,7 @@ export default function PorQue() {
                   Daniela Campos
                 </p>
                 <p className="font-[family-name:var(--font-inter)] text-xs text-[#EDE5D4]/40 tracking-wider">
-                  Contadora P�blica � Fusagasug�
+                  Contadora Pública · Fusagasugá
                 </p>
               </div>
               <span className="flex-1 h-px bg-[#C9A84C]/15" />

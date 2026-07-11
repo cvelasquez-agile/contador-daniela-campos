@@ -1,4 +1,4 @@
-﻿const servicios = [
+const servicios = [
   {
     icon: (
       <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -131,7 +131,7 @@ export default function Servicios() {
                 {s.detalle.map((d) => (
                   <li key={d} className="flex items-start gap-2">
                     <span className="mt-1.5 w-1 h-1 rounded-full bg-[#C9A84C] flex-shrink-0" />
-                    <span className="font-[family-name:var(--font-inter)] text-[11px] text-[#EDE5D4]/40">
+                    <span className="font-[family-name:var(--font-inter)] text-xs text-[#EDE5D4]/55">
                       {d}
                     </span>
                   </li>

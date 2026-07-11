@@ -11,7 +11,7 @@ export default function Footer() {
           </p>
         </div>
 
-        <nav className="flex flex-wrap justify-center gap-6">
+        <nav className="flex flex-wrap justify-center gap-x-6 gap-y-0">
           {[
             { href: "#renta-2026", label: "Renta 2026" },
             { href: "#servicios", label: "Servicios" },
@@ -22,7 +22,7 @@ export default function Footer() {
             <a
               key={l.href}
               href={l.href}
-              className="font-[family-name:var(--font-inter)] text-xs text-[#EDE5D4]/40 hover:text-[#C9A84C] transition-colors tracking-wider uppercase"
+              className="inline-block py-3 font-[family-name:var(--font-inter)] text-xs text-[#EDE5D4]/40 hover:text-[#C9A84C] transition-colors tracking-wider uppercase"
             >
               {l.label}
             </a>
