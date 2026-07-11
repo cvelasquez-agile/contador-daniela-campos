@@ -31,7 +31,7 @@ const TRACK = [...REVIEWS, ...REVIEWS];
 
 export default function Testimonios() {
   return (
-    <section id="testimonios" className="bg-[#081510] py-24 overflow-hidden">
+    <section id="testimonios" className="bg-[#0F2016] py-24 overflow-hidden">
       <style>{`
         @keyframes marquee {
           0%   { transform: translateX(0); }
@@ -66,14 +66,14 @@ export default function Testimonios() {
 
       {/* Marquee */}
       <div className="relative">
-        <div className="absolute left-0 top-0 bottom-0 w-8 sm:w-16 md:w-24 bg-gradient-to-r from-[#081510] to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-8 sm:w-16 md:w-24 bg-gradient-to-l from-[#081510] to-transparent z-10 pointer-events-none" />
+        <div className="absolute left-0 top-0 bottom-0 w-8 sm:w-16 md:w-24 bg-gradient-to-r from-[#0F2016] to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-8 sm:w-16 md:w-24 bg-gradient-to-l from-[#0F2016] to-transparent z-10 pointer-events-none" />
 
         <div className="marquee-track px-4">
           {TRACK.map((r, idx) => (
             <div
               key={idx}
-              className="flex-shrink-0 w-[280px] sm:w-[320px] bg-[#112119] border border-[#C9A84C]/20 rounded-2xl p-5 sm:p-7 flex flex-col gap-4"
+              className="flex-shrink-0 w-[280px] sm:w-[320px] bg-[#162B1E] border border-[#C9A84C]/20 rounded-2xl p-5 sm:p-7 flex flex-col gap-4"
             >
               {/* Stars */}
               <div className="flex gap-0.5">

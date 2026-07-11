@@ -58,9 +58,9 @@ const TIPO_LABELS: Record<string, string> = {
 
 const TIPO_COLORS: Record<string, string> = {
   iva: "bg-[#C9A84C]/20 text-[#C9A84C] border-[#C9A84C]/40",
-  renta: "bg-purple-900/30 text-purple-300 border-purple-700/40",
-  retencion: "bg-cyan-900/30 text-cyan-300 border-cyan-700/40",
-  pila: "bg-emerald-900/30 text-emerald-300 border-emerald-700/40",
+  renta: "bg-[#C9A84C]/10 text-[#E2C97E] border-[#C9A84C]/30",
+  retencion: "bg-[#EDE5D4]/10 text-[#EDE5D4] border-[#EDE5D4]/25",
+  pila: "bg-[#EDE5D4]/5 text-[#EDE5D4]/75 border-[#EDE5D4]/15",
 };
 
 function getDiasRestantes(fecha: string): number {
@@ -73,9 +73,9 @@ function getDiasRestantes(fecha: string): number {
 }
 
 function getSemaforo(dias: number) {
-  if (dias <= 7) return { color: "border-red-500/60 bg-red-950/30", dot: "bg-red-500 animate-pulse" };
-  if (dias <= 20) return { color: "border-yellow-500/60 bg-yellow-950/30", dot: "bg-yellow-400" };
-  return { color: "border-[#C9A84C]/20 bg-[#162B1E]", dot: "bg-emerald-500" };
+  if (dias <= 7) return { color: "border-red-800/50 bg-red-950/20", dot: "bg-red-500 animate-pulse" };
+  if (dias <= 20) return { color: "border-amber-700/45 bg-amber-950/15", dot: "bg-amber-400" };
+  return { color: "border-[#C9A84C]/20 bg-[#162B1E]", dot: "bg-[#C9A84C]" };
 }
 
 type Filtro = "todos" | "iva" | "renta" | "retencion" | "pila";
@@ -93,7 +93,7 @@ export default function Semaforo() {
   }, [filtro]);
 
   return (
-    <section id="vencimientos" className="py-24 bg-[#0F2016]">
+    <section id="vencimientos" className="py-24 bg-[#081510]">
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-center mb-12">
           <p className="font-[family-name:var(--font-inter)] text-xs text-[#C9A84C] tracking-[0.3em] uppercase mb-4">

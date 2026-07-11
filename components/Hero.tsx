@@ -308,9 +308,20 @@ export default function Hero() {
             </h1>
 
             {/* Subtitle */}
-            <p className="font-[family-name:var(--font-playfair)] text-[#EDE5D4]/50 text-base italic mb-6">
-              Daniela Campos · Contadora Pública
-            </p>
+            <div className="flex items-center gap-3 mb-6">
+              <div className="lg:hidden relative w-11 h-11 rounded-full overflow-hidden border border-[#C9A84C]/40 flex-shrink-0">
+                <Image
+                  src="/daniela.webp"
+                  alt="Daniela Campos"
+                  fill
+                  sizes="44px"
+                  className="object-cover object-top"
+                />
+              </div>
+              <p className="font-[family-name:var(--font-playfair)] text-[#EDE5D4]/50 text-base italic">
+                Daniela Campos · Contadora Pública
+              </p>
+            </div>
 
             {/* Paragraph */}
             <p className="font-[family-name:var(--font-inter)] text-[#EDE5D4]/55 text-sm leading-relaxed mb-10 max-w-md">

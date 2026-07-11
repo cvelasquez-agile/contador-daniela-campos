@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Inter } from "next/font/google";
+import { Playfair_Display, Inter, Caveat } from "next/font/google";
 import "./globals.css";
 import JsonLd from "@/components/JsonLd";
 
@@ -12,6 +12,13 @@ const playfair = Playfair_Display({
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
+  display: "swap",
+});
+
+const signature = Caveat({
+  variable: "--font-signature",
+  subsets: ["latin"],
+  weight: ["600"],
   display: "swap",
 });
 
@@ -91,7 +98,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es-CO" className={`${playfair.variable} ${inter.variable}`}>
+    <html lang="es-CO" className={`${playfair.variable} ${inter.variable} ${signature.variable}`}>
       <head>
         <JsonLd />
       </head>

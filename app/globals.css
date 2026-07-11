@@ -19,5 +19,7 @@
   body {
     background-color: #081510;
     color: #F5F0E8;
+    background-image: radial-gradient(circle, rgba(201, 168, 76, 0.045) 1px, transparent 1px);
+    background-size: 28px 28px;
   }
 }
