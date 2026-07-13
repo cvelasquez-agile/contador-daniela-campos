@@ -1,3 +1,5 @@
+import { FAQS } from "@/lib/faqs";
+
 export default function JsonLd() {
   const schema = {
     "@context": "https://schema.org",
@@ -65,32 +67,14 @@ export default function JsonLd() {
       },
       {
         "@type": "FAQPage",
-        mainEntity: [
-          {
-            "@type": "Question",
-            name: "¿Cuándo vence mi declaración de renta 2026 en Colombia?",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: "La fecha límite para declarar renta 2026 (año gravable 2025) depende de los dos últimos dígitos de su cédula o NIT. Los plazos van desde agosto hasta diciembre de 2026. Ingrese sus dígitos en nuestra calculadora para conocer su fecha exacta.",
-            },
+        mainEntity: FAQS.map((item) => ({
+          "@type": "Question",
+          name: item.q,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: item.a,
           },
-          {
-            "@type": "Question",
-            name: "¿Cuánto cuesta la declaración de renta en Fusagasugá?",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: "El valor varía según la complejidad de su situación tributaria (empleado, independiente, con activos, con inversiones, etc.). Ofrecemos consulta inicial gratuita para evaluar su caso sin compromiso.",
-            },
-          },
-          {
-            "@type": "Question",
-            name: "¿Qué pasa si no declaro renta a tiempo?",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: "La DIAN impone sanciones de extemporaneidad que para 2026 inician en $470.000 COP y aumentan con el tiempo. También genera intereses de mora. Es fundamental presentar la declaración antes de su fecha límite.",
-            },
-          },
-        ],
+        })),
       },
     ],
   };
