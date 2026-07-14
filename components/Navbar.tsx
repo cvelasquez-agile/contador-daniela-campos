@@ -48,7 +48,7 @@ export default function Navbar() {
               href={`https://wa.me/573028031478?text=${encodeURIComponent("Hola Daniela, me gustaría más información sobre sus servicios")}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-5 py-2 text-sm border border-[#C9A84C] text-[#C9A84C] hover:bg-[#C9A84C] hover:text-[#081510] transition-all rounded font-semibold tracking-wider"
+              className="px-5 py-2 text-sm border border-[#C9A84C] text-[#C9A84C] hover:bg-[#C9A84C] hover:text-[#081510] transition-all rounded-lg font-semibold tracking-wider"
             >
               Consulta Gratis
             </a>
@@ -88,7 +88,7 @@ export default function Navbar() {
             href="https://wa.me/573028031478"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-center py-3 mt-2 border border-[#C9A84C] text-[#C9A84C] rounded text-sm font-semibold"
+            className="text-center py-3 mt-2 border border-[#C9A84C] text-[#C9A84C] rounded-lg text-sm font-semibold"
           >
             Consulta Gratis
           </a>

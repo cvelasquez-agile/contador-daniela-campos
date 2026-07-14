@@ -188,7 +188,7 @@ export default function Semaforo() {
             href="https://wa.me/573028031478?text=Hola%20Daniela,%20necesito%20ayuda%20con%20un%20vencimiento"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 border border-[#C9A84C]/40 text-[#C9A84C] hover:bg-[#C9A84C] hover:text-[#081510] transition-all rounded text-sm font-[family-name:var(--font-inter)] font-semibold tracking-wider"
+            className="inline-flex items-center gap-2 px-6 py-3 border border-[#C9A84C]/40 text-[#C9A84C] hover:bg-[#C9A84C] hover:text-[#081510] transition-all rounded-lg text-sm font-[family-name:var(--font-inter)] font-semibold tracking-wider"
           >
             Gestionar con Daniela
           </a>

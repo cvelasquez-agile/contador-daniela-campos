@@ -100,7 +100,10 @@ export default function Servicios() {
           <p className="font-[family-name:var(--font-inter)] text-xs text-[#C9A84C] tracking-[0.3em] uppercase mb-4">
             Portafolio de servicios
           </p>
-          <h2 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl font-bold text-[#F5F0E8] mb-4">
+          <h2
+            className="font-[family-name:var(--font-playfair)] font-bold text-[#F5F0E8] mb-4"
+            style={{ fontSize: "clamp(2rem,4vw,3rem)" }}
+          >
             Todo lo que necesita,<br className="hidden md:block" /> en un solo lugar
           </h2>
           <div className="w-16 h-px bg-gradient-to-r from-transparent via-[#C9A84C] to-transparent mx-auto mb-4" />
