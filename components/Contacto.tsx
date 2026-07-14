@@ -33,7 +33,7 @@ export default function Contacto() {
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
           {/* Left: info */}
-          <div>
+          <div className="flex flex-col justify-center">
             <p className="font-[family-name:var(--font-inter)] text-xs text-[#C9A84C] tracking-[0.3em] uppercase mb-4">
               Hablemos
             </p>

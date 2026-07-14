@@ -90,7 +90,11 @@ export default function FAQ() {
                         {item.q}
                       </span>
                       <span
-                        className={`text-[#C9A84C] text-xl font-light flex-shrink-0 transition-transform duration-300 ${isOpen ? "rotate-45" : ""}`}
+                        className={`w-8 h-8 rounded-full border flex items-center justify-center text-lg font-light flex-shrink-0 transition-all duration-300 ${
+                          isOpen
+                            ? "border-[#C9A84C] text-[#C9A84C] bg-[#C9A84C]/10 rotate-45"
+                            : "border-[#C9A84C]/30 text-[#C9A84C] group-hover:border-[#C9A84C]/60"
+                        }`}
                         style={{ lineHeight: 1 }}
                       >
                         +
@@ -105,7 +109,7 @@ export default function FAQ() {
                     }}
                   >
                     <div className="pb-6 pl-4 md:pl-[calc(2.5rem+1.25rem)] pr-4 md:pr-8">
-                      <p className="font-[family-name:var(--font-inter)] text-sm text-[#EDE5D4]/50 leading-relaxed">
+                      <p className="font-[family-name:var(--font-inter)] text-sm text-[#EDE5D4]/50 leading-relaxed max-w-xl">
                         {item.a}
                       </p>
                     </div>

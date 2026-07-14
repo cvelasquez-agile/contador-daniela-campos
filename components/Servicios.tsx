@@ -8,6 +8,7 @@ const servicios = [
     titulo: "Declaración de Renta",
     descripcion: "Presentación ante la DIAN para personas naturales y jurídicas, optimizando su carga tributaria.",
     detalle: ["Personas naturales obligadas y no obligadas", "Sociedades y SAS", "Asesoría en deducciones y beneficios", "Corrección de declaraciones"],
+    destacado: true,
   },
   {
     icon: (
@@ -18,6 +19,7 @@ const servicios = [
     titulo: "Contabilidad Integral",
     descripcion: "Registro de operaciones, estados financieros y libros oficiales al día.",
     detalle: ["Estados financieros mensuales", "Libros contables NIIF", "Conciliaciones bancarias", "Informes gerenciales"],
+    destacado: true,
   },
   {
     icon: (
@@ -117,11 +119,27 @@ export default function Servicios() {
           {servicios.map((s, i) => (
             <div
               key={i}
-              className="group relative p-7 border border-[#C9A84C]/20 rounded-lg bg-[#162B1E] hover:border-[#C9A84C]/60 transition-all duration-300 hover:bg-[#1A3325]"
+              className={`group relative p-7 border rounded-lg transition-all duration-300 ${
+                s.destacado
+                  ? "border-[#C9A84C]/45 bg-[#1B2E1F] hover:border-[#C9A84C]/70 hover:bg-[#213524]"
+                  : "border-[#C9A84C]/20 bg-[#162B1E] hover:border-[#C9A84C]/60 hover:bg-[#1A3325]"
+              }`}
             >
               <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#C9A84C]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
 
-              <div className="text-[#C9A84C] mb-4">{s.icon}</div>
+              {s.destacado && (
+                <span className="absolute top-5 right-5 text-[9px] font-[family-name:var(--font-inter)] tracking-[0.15em] uppercase text-[#C9A84C] border border-[#C9A84C]/40 rounded-full px-2 py-0.5">
+                  Más solicitado
+                </span>
+              )}
+
+              <div
+                className={`text-[#C9A84C] mb-4 inline-flex items-center justify-center ${
+                  s.destacado ? "w-12 h-12 rounded-full bg-[#C9A84C]/12" : ""
+                }`}
+              >
+                {s.icon}
+              </div>
 
               <h3 className="font-[family-name:var(--font-playfair)] text-lg font-bold text-[#F5F0E8] mb-2">
                 {s.titulo}
@@ -131,7 +149,7 @@ export default function Servicios() {
               </p>
 
               <ul className="space-y-1.5">
-                {s.detalle.map((d) => (
+                {(s.destacado ? s.detalle : s.detalle.slice(0, 2)).map((d) => (
                   <li key={d} className="flex items-start gap-2">
                     <span className="mt-1.5 w-1 h-1 rounded-full bg-[#C9A84C] flex-shrink-0" />
                     <span className="font-[family-name:var(--font-inter)] text-xs text-[#EDE5D4]/55">
