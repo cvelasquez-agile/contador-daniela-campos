@@ -1,6 +1,5 @@
 import { ImageResponse } from "next/og";
 
-export const runtime = "edge";
 export const size = { width: 180, height: 180 };
 export const contentType = "image/png";
 
@@ -15,9 +14,11 @@ export default function AppleIcon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
+          position: "relative",
         }}
       >
-        <svg width="150" height="150" viewBox="0 0 420 420">
+        {/* Hexagon */}
+        <svg width="150" height="150" viewBox="0 0 420 420" style={{ position: "absolute" }}>
           <defs>
             <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#E2C97E" />
@@ -30,19 +31,22 @@ export default function AppleIcon() {
             stroke="url(#g)"
             strokeWidth="14"
           />
-          <text
-            x="210"
-            y="255"
-            textAnchor="middle"
-            fontSize="160"
-            fontFamily="Georgia, serif"
-            fontWeight="700"
-            fill="url(#g)"
-            letterSpacing="-6"
-          >
-            DC
-          </text>
         </svg>
+        {/* DC monogram as a div — Satori cannot rasterize SVG <text> nodes */}
+        <div
+          style={{
+            display: "flex",
+            fontFamily: "Georgia, serif",
+            fontSize: 61,
+            fontWeight: 700,
+            letterSpacing: "-2px",
+            backgroundImage: "linear-gradient(135deg, #E2C97E, #C9A84C)",
+            backgroundClip: "text",
+            color: "transparent",
+          }}
+        >
+          DC
+        </div>
       </div>
     ),
     { ...size }

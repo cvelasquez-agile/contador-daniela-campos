@@ -1,4 +1,5 @@
 import { FAQS } from "@/lib/faqs";
+import { SITE_URL } from "@/lib/site";
 
 export default function JsonLd() {
   const schema = {
@@ -6,11 +7,11 @@ export default function JsonLd() {
     "@graph": [
       {
         "@type": "AccountingService",
-        "@id": "https://www.danielacamposcontadora.com/#business",
+        "@id": `${SITE_URL}/#business`,
         name: "Daniela Campos – Contadora Pública",
         description:
           "Estudio contable en Fusagasugá, Cundinamarca. Servicios de declaración de renta, contabilidad empresarial, nómina, seguridad social y revisoría fiscal para personas naturales y empresas.",
-        url: "https://www.danielacamposcontadora.com",
+        url: SITE_URL,
         telephone: "+573028031478",
         priceRange: "$$",
         currenciesAccepted: "COP",
@@ -45,10 +46,10 @@ export default function JsonLd() {
       },
       {
         "@type": "Person",
-        "@id": "https://www.danielacamposcontadora.com/#persona",
+        "@id": `${SITE_URL}/#persona`,
         name: "Daniela Campos",
         jobTitle: "Contadora Pública",
-        worksFor: { "@id": "https://www.danielacamposcontadora.com/#business" },
+        worksFor: { "@id": `${SITE_URL}/#business` },
         address: {
           "@type": "PostalAddress",
           addressLocality: "Fusagasugá",
@@ -58,12 +59,12 @@ export default function JsonLd() {
       },
       {
         "@type": "WebSite",
-        "@id": "https://www.danielacamposcontadora.com/#website",
-        url: "https://www.danielacamposcontadora.com",
+        "@id": `${SITE_URL}/#website`,
+        url: SITE_URL,
         name: "Daniela Campos Contadora Pública",
         description: "Servicios contables y tributarios en Fusagasugá",
         inLanguage: "es-CO",
-        publisher: { "@id": "https://www.danielacamposcontadora.com/#business" },
+        publisher: { "@id": `${SITE_URL}/#business` },
       },
       {
         "@type": "FAQPage",

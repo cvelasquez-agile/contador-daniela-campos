@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
+import { SITE_HOST } from "@/lib/site";
 
-export const runtime = "edge";
 export const alt = "Daniela Campos – Contadora Pública en Fusagasugá";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
@@ -128,9 +128,11 @@ export default async function Image() {
             </span>
           </div>
 
-          {/* Main name */}
+          {/* Main name — explicit flex column; Satori rejects multi-child divs without a display */}
           <div
             style={{
+              display: "flex",
+              flexDirection: "column",
               fontSize: 74,
               fontWeight: 700,
               color: "#F5F0E8",
@@ -138,9 +140,8 @@ export default async function Image() {
               marginBottom: 20,
             }}
           >
-            Daniela
-            <br />
-            Campos
+            <span>Daniela</span>
+            <span>Campos</span>
           </div>
 
           {/* Tagline */}
@@ -172,7 +173,16 @@ export default async function Image() {
                   gap: 8,
                 }}
               >
-                <span style={{ color: "#C9A84C", fontSize: 10 }}>✦</span>
+                {/* Diamond bullet as a shape — the ✦ glyph has no downloadable font */}
+                <div
+                  style={{
+                    display: "flex",
+                    width: 7,
+                    height: 7,
+                    background: "#C9A84C",
+                    transform: "rotate(45deg)",
+                  }}
+                />
                 <span
                   style={{
                     fontFamily: "Arial, sans-serif",
@@ -224,20 +234,21 @@ export default async function Image() {
               stroke="rgba(201,168,76,0.35)"
               strokeWidth="1.5"
             />
-            {/* DC monogram */}
-            <text
-              x="140"
-              y="158"
-              textAnchor="middle"
-              fontSize="80"
-              fontFamily="Georgia, serif"
-              fontWeight="700"
-              fill="rgba(201,168,76,0.80)"
-              letterSpacing="-4"
-            >
-              DC
-            </text>
           </svg>
+          {/* DC monogram as a div — Satori cannot rasterize SVG <text> nodes */}
+          <div
+            style={{
+              position: "absolute",
+              display: "flex",
+              fontFamily: "Georgia, serif",
+              fontSize: 80,
+              fontWeight: 700,
+              letterSpacing: "-4px",
+              color: "rgba(201,168,76,0.80)",
+            }}
+          >
+            DC
+          </div>
         </div>
 
         {/* Bottom URL */}
@@ -253,7 +264,7 @@ export default async function Image() {
             display: "flex",
           }}
         >
-          danielacamposcontadora.com
+          {SITE_HOST}
         </div>
 
         {/* Bottom right: WhatsApp */}

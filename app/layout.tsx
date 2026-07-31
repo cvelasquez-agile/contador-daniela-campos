@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Playfair_Display, Inter, Caveat } from "next/font/google";
 import "./globals.css";
 import JsonLd from "@/components/JsonLd";
+import { SITE_URL } from "@/lib/site";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -22,7 +23,7 @@ const signature = Caveat({
   display: "swap",
 });
 
-const BASE_URL = "https://www.danielacamposcontadora.com";
+const BASE_URL = SITE_URL;
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
@@ -59,21 +60,14 @@ export const metadata: Metadata = {
     title: "Daniela Campos | Contadora Pública en Fusagasugá",
     description:
       "Declaración de renta 2026, contabilidad, nómina y revisoría fiscal en Fusagasugá. Calcula tu fecha límite DIAN y agenda consulta gratuita.",
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Daniela Campos – Contadora Pública en Fusagasugá, Cundinamarca",
-      },
-    ],
+    // Image comes from app/opengraph-image.tsx
   },
   twitter: {
     card: "summary_large_image",
     title: "Daniela Campos | Contadora Pública en Fusagasugá",
     description:
       "Declaración de renta 2026, contabilidad, nómina y revisoría fiscal en Fusagasugá. Calcula tu fecha límite DIAN.",
-    images: ["/og-image.jpg"],
+    // Image comes from app/twitter-image.tsx
   },
   robots: {
     index: true,
