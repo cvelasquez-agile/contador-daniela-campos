@@ -47,7 +47,7 @@ export default function FAQ() {
               <p className="font-[family-name:var(--font-playfair)] font-bold text-[#F5F0E8] text-base mb-1 leading-snug">
                 ¿Tiene otra pregunta?
               </p>
-              <p className="font-[family-name:var(--font-inter)] text-xs text-[#EDE5D4]/45 leading-relaxed mb-4">
+              <p className="font-[family-name:var(--font-inter)] text-xs text-[#EDE5D4]/60 leading-relaxed mb-4">
                 Escríbanos directamente y le respondemos en menos de 24 horas.
               </p>
               <a
@@ -70,37 +70,39 @@ export default function FAQ() {
               const num = String(idx + 1).padStart(2, "0");
               return (
                 <div key={idx} className="group">
-                  <button
-                    className="w-full text-left py-6 flex items-start gap-5 transition-colors focus:outline-none"
-                    onClick={() => setOpen(isOpen ? null : idx)}
-                    aria-expanded={isOpen}
-                  >
-                    <span
-                      aria-hidden="true"
-                      className="font-[family-name:var(--font-playfair)] font-bold text-[#C9A84C] select-none flex-shrink-0 leading-none mt-0.5 transition-opacity"
-                      style={{ fontSize: "2.5rem", opacity: isOpen ? 0.25 : 0.1 }}
+                  <h3>
+                    <button
+                      className="w-full text-left py-6 flex items-start gap-5 transition-colors focus:outline-none"
+                      onClick={() => setOpen(isOpen ? null : idx)}
+                      aria-expanded={isOpen}
                     >
-                      {num}
-                    </span>
-                    <div className="flex-1 flex items-center justify-between gap-4 min-w-0">
                       <span
-                        className={`font-[family-name:var(--font-playfair)] font-bold leading-snug transition-colors ${isOpen ? "text-[#C9A84C]" : "text-[#F5F0E8] group-hover:text-[#EDE5D4]"}`}
-                        style={{ fontSize: "1.05rem" }}
+                        aria-hidden="true"
+                        className="font-[family-name:var(--font-playfair)] font-bold text-[#C9A84C] select-none flex-shrink-0 leading-none mt-0.5 transition-opacity"
+                        style={{ fontSize: "2.5rem", opacity: isOpen ? 0.25 : 0.1 }}
                       >
-                        {item.q}
+                        {num}
                       </span>
-                      <span
-                        className={`w-8 h-8 rounded-full border flex items-center justify-center text-lg font-light flex-shrink-0 transition-all duration-300 ${
-                          isOpen
-                            ? "border-[#C9A84C] text-[#C9A84C] bg-[#C9A84C]/10 rotate-45"
-                            : "border-[#C9A84C]/30 text-[#C9A84C] group-hover:border-[#C9A84C]/60"
-                        }`}
-                        style={{ lineHeight: 1 }}
-                      >
-                        +
-                      </span>
-                    </div>
-                  </button>
+                      <div className="flex-1 flex items-center justify-between gap-4 min-w-0">
+                        <span
+                          className={`font-[family-name:var(--font-playfair)] font-bold leading-snug transition-colors ${isOpen ? "text-[#C9A84C]" : "text-[#F5F0E8] group-hover:text-[#EDE5D4]"}`}
+                          style={{ fontSize: "1.05rem" }}
+                        >
+                          {item.q}
+                        </span>
+                        <span
+                          className={`w-8 h-8 rounded-full border flex items-center justify-center text-lg font-light flex-shrink-0 transition-all duration-300 ${
+                            isOpen
+                              ? "border-[#C9A84C] text-[#C9A84C] bg-[#C9A84C]/10 rotate-45"
+                              : "border-[#C9A84C]/30 text-[#C9A84C] group-hover:border-[#C9A84C]/60"
+                          }`}
+                          style={{ lineHeight: 1 }}
+                        >
+                          +
+                        </span>
+                      </div>
+                    </button>
+                  </h3>
                   <div
                     style={{
                       maxHeight: isOpen ? "600px" : "0px",
@@ -109,7 +111,7 @@ export default function FAQ() {
                     }}
                   >
                     <div className="pb-6 pl-4 md:pl-[calc(2.5rem+1.25rem)] pr-4 md:pr-8">
-                      <p className="font-[family-name:var(--font-inter)] text-sm text-[#EDE5D4]/50 leading-relaxed max-w-xl">
+                      <p className="font-[family-name:var(--font-inter)] text-sm text-[#EDE5D4]/60 leading-relaxed max-w-xl">
                         {item.a}
                       </p>
                     </div>

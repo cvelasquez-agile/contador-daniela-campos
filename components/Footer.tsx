@@ -6,7 +6,7 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="flex flex-col items-center md:items-start gap-2">
           <Logo variant="full" size={36} />
-          <p className="font-[family-name:var(--font-inter)] text-xs text-[#EDE5D4]/35 mt-1">
+          <p className="font-[family-name:var(--font-inter)] text-xs text-[#EDE5D4]/60 mt-1">
             Fusagasugá, Cundinamarca
           </p>
         </div>
@@ -22,14 +22,14 @@ export default function Footer() {
             <a
               key={l.href}
               href={l.href}
-              className="inline-block py-3 font-[family-name:var(--font-inter)] text-xs text-[#EDE5D4]/40 hover:text-[#C9A84C] transition-colors tracking-wider uppercase"
+              className="inline-block py-3 font-[family-name:var(--font-inter)] text-xs text-[#EDE5D4]/60 hover:text-[#C9A84C] transition-colors tracking-wider uppercase"
             >
               {l.label}
             </a>
           ))}
         </nav>
 
-        <p className="font-[family-name:var(--font-inter)] text-xs text-[#EDE5D4]/30 text-center md:text-right">
+        <p className="font-[family-name:var(--font-inter)] text-xs text-[#EDE5D4]/60 text-center md:text-right">
           © {new Date().getFullYear()} Daniela Campos.<br className="md:hidden" /> Todos los derechos reservados.
         </p>
       </div>

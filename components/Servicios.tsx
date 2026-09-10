@@ -109,7 +109,7 @@ export default function Servicios() {
             Todo lo que necesita,<br className="hidden md:block" /> en un solo lugar
           </h2>
           <div className="w-16 h-px bg-gradient-to-r from-transparent via-[#C9A84C] to-transparent mx-auto mb-4" />
-          <p className="font-[family-name:var(--font-inter)] text-sm text-[#EDE5D4]/45 max-w-xl mx-auto">
+          <p className="font-[family-name:var(--font-inter)] text-sm text-[#EDE5D4]/60 max-w-xl mx-auto">
             Gestión contable y tributaria cercana, precisa y a tiempo.
           </p>
         </div>

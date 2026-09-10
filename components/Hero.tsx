@@ -133,8 +133,8 @@ function CalculatorCard({
     >
       <div className="absolute top-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-[#C9A84C]/50 to-transparent" />
 
-      <div className="p-5 sm:p-6">
-        <div className="flex items-center justify-between mb-4">
+      <div className="p-5">
+        <div className="flex items-center justify-between mb-3">
           <span className="font-[family-name:var(--font-inter)] text-[10px] tracking-[0.2em] text-[#C9A84C] uppercase font-semibold border border-[#C9A84C]/30 px-2.5 py-1 rounded-full">
             DIAN · Renta 2026
           </span>
@@ -146,12 +146,12 @@ function CalculatorCard({
         <h2 className="font-[family-name:var(--font-playfair)] text-lg font-bold text-[#F5F0E8] mb-0.5">
           Calcula tu fecha límite
         </h2>
-        <p className="font-[family-name:var(--font-inter)] text-xs text-[#EDE5D4]/60 mb-4">
+        <p className="font-[family-name:var(--font-inter)] text-xs text-[#EDE5D4]/60 mb-3">
           Dos últimos dígitos de tu cédula
         </p>
 
         <div
-          className="relative cursor-text mb-4"
+          className="relative cursor-text mb-3"
           onClick={() => inputRef.current?.focus()}
         >
           <input
@@ -163,7 +163,7 @@ function CalculatorCard({
             onChange={(e) => handleInput(e.target.value)}
             placeholder="_ _"
             aria-label="Dos últimos dígitos de tu cédula"
-            className="w-full bg-[#081510] border border-[#C9A84C]/20 focus:border-[#C9A84C]/70 rounded-xl px-6 py-4 text-center font-[family-name:var(--font-playfair)] font-bold text-[#F5F0E8] placeholder-[#EDE5D4]/12 focus:outline-none transition-all tracking-[0.5em]"
+            className="w-full bg-[#081510] border border-[#C9A84C]/20 focus:border-[#C9A84C]/70 rounded-xl px-6 py-3 text-center font-[family-name:var(--font-playfair)] font-bold text-[#F5F0E8] placeholder-[#EDE5D4]/12 focus:outline-none transition-all tracking-[0.5em]"
             style={{ fontSize: "clamp(1.5rem,5vw,2rem)" }}
           />
         </div>
@@ -176,7 +176,7 @@ function CalculatorCard({
               </span>
               <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold border font-[family-name:var(--font-inter)] ${urgency.pill}`}>
                 <span className={`w-1.5 h-1.5 rounded-full ${urgency.dot}`} />
-                {result.dias > 0 ? `${result.dias} días` : "Hoy"}
+                {result.dias > 0 ? `${result.dias} días` : result.dias === 0 ? "Hoy" : `Venció hace ${Math.abs(result.dias)} días`}
               </span>
             </div>
             <p
@@ -185,7 +185,7 @@ function CalculatorCard({
             >
               {result.label}
             </p>
-            <p className="font-[family-name:var(--font-inter)] text-xs text-[#EDE5D4]/60">
+            <p className="font-[family-name:var(--font-inter)] text-xs text-[#EDE5D4]/60" role="status" aria-live="polite">
               {urgency.msg}
             </p>
             <a
@@ -203,7 +203,7 @@ function CalculatorCard({
           <div className="text-center py-2">
             <div className="flex justify-center gap-1 mb-2">
               {["Ago", "Sep", "Oct", "Nov", "Dic"].map((m) => (
-                <span key={m} className="font-[family-name:var(--font-inter)] text-xs text-[#EDE5D4]/45 px-1.5 py-0.5 border border-[#EDE5D4]/15 rounded">
+                <span key={m} className="font-[family-name:var(--font-inter)] text-xs text-[#EDE5D4]/60 px-1.5 py-0.5 border border-[#EDE5D4]/15 rounded">
                   {m}
                 </span>
               ))}
@@ -217,8 +217,8 @@ function CalculatorCard({
         )}
       </div>
 
-      <div className="px-6 pb-4">
-        <p className="font-[family-name:var(--font-inter)] text-xs text-[#EDE5D4]/45 text-center">
+      <div className="px-6 pb-3">
+        <p className="font-[family-name:var(--font-inter)] text-xs text-[#EDE5D4]/60 text-center">
           Calendario estimado · Confirme con el decreto DIAN oficial
         </p>
       </div>
@@ -244,14 +244,18 @@ export default function Hero() {
 
   const urgency =
     result === null ? null
-    : result.dias <= 30
-      ? { ring: "ring-red-500/60", pill: "bg-red-500/15 text-red-400 border-red-500/30", dot: "bg-red-500 animate-pulse", date: "text-red-400", msg: "Actúe hoy · quedan pocos días" }
-      : result.dias <= 90
-        ? { ring: "ring-yellow-500/50", pill: "bg-yellow-500/15 text-yellow-400 border-yellow-500/30", dot: "bg-yellow-400", date: "text-yellow-300", msg: "Prepárese · el plazo se acerca" }
-        : { ring: "ring-emerald-500/40", pill: "bg-emerald-500/15 text-emerald-400 border-emerald-500/30", dot: "bg-emerald-500", date: "text-emerald-400", msg: "Tiempo disponible · planifique con calma" };
+    : result.dias < 0
+      ? { ring: "ring-red-500/60", pill: "bg-red-500/15 text-red-400 border-red-500/30", dot: "bg-red-500 animate-pulse", date: "text-red-400", msg: "Ya venció · la sanción está corriendo" }
+      : result.dias <= 30
+        ? { ring: "ring-red-500/60", pill: "bg-red-500/15 text-red-400 border-red-500/30", dot: "bg-red-500 animate-pulse", date: "text-red-400", msg: "Actúe hoy · quedan pocos días" }
+        : result.dias <= 90
+          ? { ring: "ring-yellow-500/50", pill: "bg-yellow-500/15 text-yellow-400 border-yellow-500/30", dot: "bg-yellow-400", date: "text-yellow-300", msg: "Prepárese · el plazo se acerca" }
+          : { ring: "ring-emerald-500/40", pill: "bg-emerald-500/15 text-emerald-400 border-emerald-500/30", dot: "bg-emerald-500", date: "text-emerald-400", msg: "Tiempo disponible · planifique con calma" };
 
   const waMsg = result
-    ? `Hola Daniela, calculé mi fecha límite de renta 2026: *${result.label}* (${result.dias} días). Quiero que me ayude a prepararla.`
+    ? result.dias < 0
+      ? `Hola Daniela, calculé mi fecha límite de renta 2026: *${result.label}* (venció hace ${Math.abs(result.dias)} días). Quiero que me ayude a ponerme al día cuanto antes.`
+      : `Hola Daniela, calculé mi fecha límite de renta 2026: *${result.label}* (${result.dias} días). Quiero que me ayude a prepararla.`
     : `Hola Daniela, quiero información sobre la declaración de renta 2026.`;
 
   const calcProps = { digits, result, urgency, waMsg, inputRef, handleInput };
@@ -283,10 +287,28 @@ export default function Hero() {
       {/* Left glow */}
       <div className="absolute -left-48 top-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[#C9A84C]/5 blur-[120px] pointer-events-none z-0" />
 
-      <div className="relative z-10 w-full flex flex-col lg:flex-row min-h-screen">
+      <div className="relative z-10 w-full flex flex-col xl:flex-row min-h-screen">
+
+        {/* Photo — phones, tablets & small laptops (<xl), full-bleed banner up top so it's
+            never hidden. The side-by-side overlap layout below needs a wide photo column to
+            read well (the floating card needs room above it to clear the face) — that's only
+            reliably true at xl+, so everything narrower gets one full-width portrait instead
+            of a photo squeezed thin and buried behind the card. */}
+        <div className="xl:hidden relative w-full shrink-0 mt-16 h-[clamp(260px,55vw,460px)]">
+          <Image
+            src="/daniela.webp"
+            alt="Daniela Campos, Contadora Pública en Fusagasugá"
+            fill
+            sizes="100vw"
+            className="object-contain object-bottom"
+            priority
+          />
+          <div className="absolute inset-x-0 top-0 h-10 bg-gradient-to-b from-[#081510] to-transparent pointer-events-none" />
+          <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#081510] to-transparent pointer-events-none" />
+        </div>
 
         {/* LEFT: Editorial copy */}
-        <div className="flex-[55] flex items-center justify-center px-6 sm:px-8 pt-28 pb-10 lg:py-0 lg:pl-16 lg:pr-8 xl:pl-24">
+        <div className="flex-[55] flex items-center justify-center px-6 sm:px-8 pt-6 pb-10 xl:py-0 xl:pl-16 xl:pr-8 2xl:pl-24">
           <div className="max-w-xl w-full">
 
             {/* Overline */}
@@ -309,16 +331,7 @@ export default function Hero() {
 
             {/* Subtitle */}
             <div className="flex items-center gap-3 mb-6">
-              <div className="lg:hidden relative w-11 h-11 rounded-full overflow-hidden border border-[#C9A84C]/40 flex-shrink-0">
-                <Image
-                  src="/daniela.webp"
-                  alt="Daniela Campos"
-                  fill
-                  sizes="44px"
-                  className="object-cover object-top"
-                />
-              </div>
-              <p className="font-[family-name:var(--font-playfair)] text-[#EDE5D4]/50 text-base italic">
+              <p className="font-[family-name:var(--font-playfair)] text-[#EDE5D4]/60 text-base italic">
                 Daniela Campos · Contadora Pública
               </p>
             </div>
@@ -337,7 +350,7 @@ export default function Hero() {
               ].map((t) => (
                 <div key={t.text} className="flex items-center gap-2">
                   <span className="text-[#C9A84C] text-[10px]">{t.icon}</span>
-                  <span className="font-[family-name:var(--font-inter)] text-xs text-[#EDE5D4]/50 tracking-wide">
+                  <span className="font-[family-name:var(--font-inter)] text-xs text-[#EDE5D4]/60 tracking-wide">
                     {t.text}
                   </span>
                 </div>
@@ -364,36 +377,39 @@ export default function Hero() {
               </a>
             </div>
 
-            {/* Calculator — mobile only (inline) */}
-            <div className="lg:hidden" style={{ filter: "drop-shadow(0 25px 50px rgba(0,0,0,0.6))" }}>
+            {/* Calculator — phones/tablets/small laptops (inline) */}
+            <div className="xl:hidden" style={{ filter: "drop-shadow(0 25px 50px rgba(0,0,0,0.6))" }}>
               <CalculatorCard {...calcProps} />
             </div>
           </div>
         </div>
 
-        {/* RIGHT: Photo + floating calculator — desktop only */}
-        <div className="hidden lg:flex flex-[45] relative items-stretch min-h-screen">
+        {/* RIGHT: Photo + floating calculator — wide desktop only */}
+        <div className="hidden xl:flex flex-[45] relative items-end min-h-screen py-10">
 
-          {/* Portrait */}
-          <div className="relative w-full overflow-hidden bg-[#081510]">
+          {/* Portrait — sized to its own aspect ratio (not stretched to viewport height), so the
+              floating card below is anchored to the photo itself and stays correctly placed no
+              matter how tall or short the screen is (laptop, ultrawide, etc). */}
+          <div className="relative w-full">
             <Image
               src="/daniela.webp"
               alt="Daniela Campos, Contadora Pública en Fusagasugá"
-              fill
-              sizes="(min-width: 1024px) 45vw, 0px"
-              className="object-contain object-bottom"
+              width={1280}
+              height={1280}
+              sizes="(min-width: 1280px) 45vw, 0px"
+              className="w-full h-auto object-contain object-bottom"
               priority
             />
             <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-[#081510] to-transparent pointer-events-none z-10" />
             <div className="absolute bottom-0 left-0 right-0 h-56 bg-gradient-to-t from-[#081510] to-transparent pointer-events-none z-10" />
-          </div>
 
-          {/* Floating calculator — desktop */}
-          <div
-            className="absolute bottom-8 -left-8 w-[340px] xl:w-[380px] z-20"
-            style={{ filter: "drop-shadow(0 25px 50px rgba(0,0,0,0.6))" }}
-          >
-            <CalculatorCard {...calcProps} />
+            {/* Floating calculator — anchored to the photo's own box */}
+            <div
+              className="absolute bottom-8 -left-8 w-[340px] 2xl:w-[380px] z-20"
+              style={{ filter: "drop-shadow(0 25px 50px rgba(0,0,0,0.6))" }}
+            >
+              <CalculatorCard {...calcProps} />
+            </div>
           </div>
         </div>
       </div>

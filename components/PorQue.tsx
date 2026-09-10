@@ -72,7 +72,7 @@ export default function PorQue() {
               </h3>
 
               {/* Body */}
-              <p className="font-[family-name:var(--font-inter)] text-sm text-[#EDE5D4]/50 leading-relaxed self-center">
+              <p className="font-[family-name:var(--font-inter)] text-sm text-[#EDE5D4]/60 leading-relaxed self-center">
                 {m.body}
               </p>
             </div>
@@ -117,7 +117,7 @@ export default function PorQue() {
                 <h4 className="font-[family-name:var(--font-playfair)] text-lg font-bold text-[#F5F0E8] mb-3">
                   {p.titulo}
                 </h4>
-                <p className="font-[family-name:var(--font-inter)] text-sm text-[#EDE5D4]/45 leading-relaxed">
+                <p className="font-[family-name:var(--font-inter)] text-sm text-[#EDE5D4]/60 leading-relaxed">
                   {p.desc}
                 </p>
 

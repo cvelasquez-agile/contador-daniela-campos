@@ -85,7 +85,7 @@ export default function Contacto() {
                     {item.icon}
                   </div>
                   <div>
-                    <p className="font-[family-name:var(--font-inter)] text-xs text-[#EDE5D4]/40 mb-0.5">{item.label}</p>
+                    <p className="font-[family-name:var(--font-inter)] text-xs text-[#EDE5D4]/60 mb-0.5">{item.label}</p>
                     <p className="font-[family-name:var(--font-inter)] text-sm text-[#F5F0E8] group-hover:text-[#C9A84C] transition-colors">
                       {item.value}
                     </p>
@@ -115,10 +115,11 @@ export default function Contacto() {
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block font-[family-name:var(--font-inter)] text-xs text-[#EDE5D4]/50 mb-1.5 tracking-wider">
+                    <label htmlFor="nombre" className="block font-[family-name:var(--font-inter)] text-xs text-[#EDE5D4]/60 mb-1.5 tracking-wider">
                       NOMBRE *
                     </label>
                     <input
+                      id="nombre"
                       required
                       value={form.nombre}
                       onChange={(e) => setForm({ ...form, nombre: e.target.value })}
@@ -127,10 +128,11 @@ export default function Contacto() {
                     />
                   </div>
                   <div>
-                    <label className="block font-[family-name:var(--font-inter)] text-xs text-[#EDE5D4]/50 mb-1.5 tracking-wider">
+                    <label htmlFor="empresa" className="block font-[family-name:var(--font-inter)] text-xs text-[#EDE5D4]/60 mb-1.5 tracking-wider">
                       EMPRESA
                     </label>
                     <input
+                      id="empresa"
                       value={form.empresa}
                       onChange={(e) => setForm({ ...form, empresa: e.target.value })}
                       className="w-full bg-[#081510] border border-[#C9A84C]/20 rounded px-4 py-2.5 text-sm text-[#F5F0E8] placeholder-[#EDE5D4]/20 focus:outline-none focus:border-[#C9A84C]/60 transition-colors font-[family-name:var(--font-inter)]"
@@ -140,10 +142,11 @@ export default function Contacto() {
                 </div>
 
                 <div>
-                  <label className="block font-[family-name:var(--font-inter)] text-xs text-[#EDE5D4]/50 mb-1.5 tracking-wider">
+                  <label htmlFor="telefono" className="block font-[family-name:var(--font-inter)] text-xs text-[#EDE5D4]/60 mb-1.5 tracking-wider">
                     TELÉFONO / WHATSAPP *
                   </label>
                   <input
+                    id="telefono"
                     required
                     type="tel"
                     value={form.telefono}
@@ -154,10 +157,11 @@ export default function Contacto() {
                 </div>
 
                 <div>
-                  <label className="block font-[family-name:var(--font-inter)] text-xs text-[#EDE5D4]/50 mb-1.5 tracking-wider">
+                  <label htmlFor="servicio" className="block font-[family-name:var(--font-inter)] text-xs text-[#EDE5D4]/60 mb-1.5 tracking-wider">
                     SERVICIO DE INTERÉS *
                   </label>
                   <select
+                    id="servicio"
                     required
                     value={form.servicio}
                     onChange={(e) => setForm({ ...form, servicio: e.target.value })}
@@ -171,10 +175,11 @@ export default function Contacto() {
                 </div>
 
                 <div>
-                  <label className="block font-[family-name:var(--font-inter)] text-xs text-[#EDE5D4]/50 mb-1.5 tracking-wider">
+                  <label htmlFor="mensaje" className="block font-[family-name:var(--font-inter)] text-xs text-[#EDE5D4]/60 mb-1.5 tracking-wider">
                     MENSAJE
                   </label>
                   <textarea
+                    id="mensaje"
                     rows={4}
                     value={form.mensaje}
                     onChange={(e) => setForm({ ...form, mensaje: e.target.value })}
