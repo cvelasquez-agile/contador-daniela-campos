@@ -52,3 +52,11 @@ export const MAPS_EMBED_URL = `https://www.google.com/maps/embed?origin=mfe&pb=!
 
 /** Opens the same verified listing in Google Maps — used for "get directions". */
 export const MAPS_LINK_URL = `https://www.google.com/maps?cid=${BUSINESS_CID}`;
+
+/**
+ * Official DIAN 2026 tax calendar PDF — Daniela asked for a direct link so
+ * visitors can verify dates themselves against the source, not just trust
+ * the site's own calculator/countdown. Same PDF used to build
+ * lib/calendarioRenta.ts.
+ */
+export const DIAN_CALENDARIO_URL = "https://www.dian.gov.co/Calendarios/Calendario_Tributario_2026.pdf";

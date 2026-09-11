@@ -104,6 +104,19 @@ export default function FAQ() {
                       <p className="font-[family-name:var(--font-inter)] text-sm text-[#EDE5D4]/60 leading-relaxed max-w-xl">
                         {item.a}
                       </p>
+                      {item.sourceUrl && (
+                        <a
+                          href={item.sourceUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 mt-3 text-xs text-[#C9A84C] hover:text-[#E2C97E] transition-colors tracking-wide"
+                        >
+                          {item.sourceLabel ?? "Ver fuente oficial"}
+                          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </a>
+                      )}
                     </div>
                   </div>
                 </Reveal>

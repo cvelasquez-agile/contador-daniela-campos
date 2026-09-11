@@ -1,3 +1,5 @@
+import { DIAN_CALENDARIO_URL } from "./site";
+
 export const FAQS = [
   {
     q: "¿Estoy obligado a declarar renta en 2026?",
@@ -6,6 +8,8 @@ export const FAQS = [
   {
     q: "¿Cuándo vence mi declaración de renta 2026?",
     a: "El vencimiento depende de los dos últimos dígitos de su número de cédula. El calendario DIAN para renta de personas naturales va del 12 de agosto al 26 de octubre de 2026, escalonado por dígito. Use la calculadora en la parte superior de esta página para conocer su fecha exacta. Recuerde que la fecha de pago y de presentación coinciden.",
+    sourceUrl: DIAN_CALENDARIO_URL,
+    sourceLabel: "Ver calendario tributario 2026 (PDF oficial DIAN)",
   },
   {
     q: "¿Cuánto cobran por hacer la declaración de renta?",

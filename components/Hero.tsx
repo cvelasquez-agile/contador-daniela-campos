@@ -1,7 +1,7 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import { WHATSAPP_NUMBER as WA } from "@/lib/site";
+import { WHATSAPP_NUMBER as WA, DIAN_CALENDARIO_URL } from "@/lib/site";
 import { CALENDARIO_RENTA as CALENDARIO } from "@/lib/calendarioRenta";
 import CountUp from "./CountUp";
 import LiveCountdown from "./LiveCountdown";
@@ -86,9 +86,6 @@ function CalculatorCard({
             style={{ fontSize: "1.75rem" }}
           />
         </div>
-        <p className="font-[family-name:var(--font-inter)] text-[10px] text-[#EDE5D4]/60 text-center mb-3">
-          No guardamos ni compartimos este dato — el cálculo ocurre en su navegador
-        </p>
 
         {result && urgency ? (
           <div className="space-y-3">
@@ -141,7 +138,15 @@ function CalculatorCard({
 
       <div className="px-6 pb-3">
         <p className="font-[family-name:var(--font-inter)] text-xs text-[#EDE5D4]/60 text-center">
-          Calendario estimado · Confirme con el decreto DIAN oficial
+          Calendario estimado ·{" "}
+          <a
+            href={DIAN_CALENDARIO_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline decoration-[#EDE5D4]/30 hover:decoration-[#C9A84C] hover:text-[#C9A84C] transition-colors"
+          >
+            Confirme con el calendario DIAN oficial
+          </a>
         </p>
       </div>
     </div>
