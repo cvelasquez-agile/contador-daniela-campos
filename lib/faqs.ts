@@ -5,7 +5,7 @@ export const FAQS = [
   },
   {
     q: "¿Cuándo vence mi declaración de renta 2026?",
-    a: "El vencimiento depende de los dos últimos dígitos de su número de cédula. El calendario DIAN para renta de personas naturales va de agosto a enero 2027, escalonado por dígito. Use la calculadora en la parte superior de esta página para conocer su fecha exacta. Recuerde que la fecha de pago y de presentación coinciden.",
+    a: "El vencimiento depende de los dos últimos dígitos de su número de cédula. El calendario DIAN para renta de personas naturales va del 12 de agosto al 26 de octubre de 2026, escalonado por dígito. Use la calculadora en la parte superior de esta página para conocer su fecha exacta. Recuerde que la fecha de pago y de presentación coinciden.",
   },
   {
     q: "¿Cuánto cobran por hacer la declaración de renta?",
@@ -13,7 +13,7 @@ export const FAQS = [
   },
   {
     q: "¿Qué pasa si no declaro a tiempo?",
-    a: "La sanción por extemporaneidad equivale al 5% del impuesto a cargo por cada mes o fracción de mes de retraso, sin superar el 100% del impuesto. Si no hay impuesto a cargo, la sanción mínima es de 10 UVT (aproximadamente $470.000 COP para 2025). Además, pueden generarse intereses de mora. Entre más espere, más costoso se vuelve.",
+    a: "La sanción por extemporaneidad equivale al 5% del impuesto a cargo por cada mes o fracción de mes de retraso, sin superar el 100% del impuesto. Si no hay impuesto a cargo, la sanción mínima es de 10 UVT ($524.000 COP para 2026). Además, pueden generarse intereses de mora. Entre más espere, más costoso se vuelve.",
   },
   {
     q: "¿Puedo declarar sin tener empresa?",

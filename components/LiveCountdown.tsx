@@ -20,7 +20,7 @@ export default function LiveCountdown() {
   const proximo = now === null ? null : getProximoVencimiento(now);
 
   return (
-    <div className="flex items-center gap-2.5 mb-7 animate-fade-rise [animation-delay:210ms]">
+    <div className="flex items-center gap-2.5 mb-5 xl:mb-7 animate-fade-rise [animation-delay:210ms]">
       <span className="relative flex h-2 w-2 flex-shrink-0" aria-hidden="true">
         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75" />
         <span className="relative inline-flex h-2 w-2 rounded-full bg-red-500" />

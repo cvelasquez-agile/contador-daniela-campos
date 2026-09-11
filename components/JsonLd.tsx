@@ -1,5 +1,5 @@
 import { FAQS } from "@/lib/faqs";
-import { SITE_URL, WHATSAPP_NUMBER } from "@/lib/site";
+import { SITE_URL, WHATSAPP_NUMBER, BUSINESS_ADDRESS, MAPS_LINK_URL } from "@/lib/site";
 
 export default function JsonLd() {
   const schema = {
@@ -10,7 +10,7 @@ export default function JsonLd() {
         "@id": `${SITE_URL}/#business`,
         name: "Daniela Campos – Contadora Pública",
         description:
-          "Estudio contable en Fusagasugá, Cundinamarca. Servicios de declaración de renta, contabilidad empresarial, nómina, seguridad social y revisoría fiscal para personas naturales y empresas.",
+          "Estudio contable en Fusagasugá y la región (Silvania, Granada, Arbeláez, San Bernardo) y en Bogotá. Servicios de declaración de renta, contabilidad empresarial, nómina, seguridad social y revisoría fiscal para personas naturales y empresas.",
         url: SITE_URL,
         telephone: `+${WHATSAPP_NUMBER}`,
         priceRange: "$$",
@@ -18,19 +18,36 @@ export default function JsonLd() {
         paymentAccepted: "Efectivo, Transferencia bancaria",
         areaServed: [
           { "@type": "City", name: "Fusagasugá" },
+          { "@type": "City", name: "Silvania" },
+          {
+            "@type": "City",
+            name: "Granada",
+            containedInPlace: { "@type": "AdministrativeArea", name: "Cundinamarca" },
+          },
+          { "@type": "City", name: "Arbeláez" },
+          {
+            "@type": "City",
+            name: "San Bernardo",
+            containedInPlace: { "@type": "AdministrativeArea", name: "Cundinamarca" },
+          },
+          { "@type": "City", name: "Bogotá" },
           { "@type": "AdministrativeArea", name: "Cundinamarca" },
         ],
         address: {
           "@type": "PostalAddress",
-          addressLocality: "Fusagasugá",
-          addressRegion: "Cundinamarca",
-          addressCountry: "CO",
+          streetAddress: `${BUSINESS_ADDRESS.street}, ${BUSINESS_ADDRESS.neighborhood}`,
+          addressLocality: BUSINESS_ADDRESS.locality,
+          addressRegion: BUSINESS_ADDRESS.region,
+          addressCountry: BUSINESS_ADDRESS.country,
         },
         geo: {
+          // Coordenadas exactas del pin verificado en su Google Business
+          // Profile (no una aproximación del centro de la ciudad).
           "@type": "GeoCoordinates",
-          latitude: 4.3372,
-          longitude: -74.3641,
+          latitude: 4.3417771,
+          longitude: -74.362469,
         },
+        hasMap: MAPS_LINK_URL,
         hasOfferCatalog: {
           "@type": "OfferCatalog",
           name: "Servicios Contables",
@@ -52,9 +69,10 @@ export default function JsonLd() {
         worksFor: { "@id": `${SITE_URL}/#business` },
         address: {
           "@type": "PostalAddress",
-          addressLocality: "Fusagasugá",
-          addressRegion: "Cundinamarca",
-          addressCountry: "CO",
+          streetAddress: `${BUSINESS_ADDRESS.street}, ${BUSINESS_ADDRESS.neighborhood}`,
+          addressLocality: BUSINESS_ADDRESS.locality,
+          addressRegion: BUSINESS_ADDRESS.region,
+          addressCountry: BUSINESS_ADDRESS.country,
         },
       },
       {
@@ -62,7 +80,7 @@ export default function JsonLd() {
         "@id": `${SITE_URL}/#website`,
         url: SITE_URL,
         name: "Daniela Campos Contadora Pública",
-        description: "Servicios contables y tributarios en Fusagasugá",
+        description: "Servicios contables y tributarios en Fusagasugá, la región y Bogotá",
         inLanguage: "es-CO",
         publisher: { "@id": `${SITE_URL}/#business` },
       },

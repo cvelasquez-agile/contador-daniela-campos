@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Playfair_Display, Inter, Caveat } from "next/font/google";
 import "./globals.css";
 import JsonLd from "@/components/JsonLd";
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     template: "%s | Daniela Campos Contadora",
   },
   description:
-    "Contadora pública en Fusagasugá, Cundinamarca. Declaración de renta 2026, contabilidad empresarial, nómina y revisoría fiscal. Consulta gratuita. ¿Cuándo vence tu renta? Calcúlalo aquí.",
+    "Contadora pública en Fusagasugá y la región (Silvania, Subía, Granada, Arbeláez, San Bernardo) y en Bogotá. Declaración de renta 2026, contabilidad empresarial, nómina y revisoría fiscal. Consulta gratuita. ¿Cuándo vence tu renta? Calcúlalo aquí.",
   keywords: [
     "contadora Fusagasugá",
     "declaración de renta Fusagasugá",
@@ -44,6 +44,11 @@ export const metadata: Metadata = {
     "fecha límite renta 2026",
     "DIAN renta 2026",
     "servicios contables Fusagasugá",
+    "contadora Silvania",
+    "contadora Granada Cundinamarca",
+    "contadora Arbeláez",
+    "contadora San Bernardo Cundinamarca",
+    "contador público Bogotá",
   ],
   authors: [{ name: "Daniela Campos", url: BASE_URL }],
   creator: "Daniela Campos",
@@ -59,14 +64,14 @@ export const metadata: Metadata = {
     siteName: "Daniela Campos – Contadora Pública",
     title: "Daniela Campos | Contadora Pública en Fusagasugá",
     description:
-      "Declaración de renta 2026, contabilidad, nómina y revisoría fiscal en Fusagasugá. Calcula tu fecha límite DIAN y agenda consulta gratuita.",
+      "Declaración de renta 2026, contabilidad, nómina y revisoría fiscal en Fusagasugá y la región, y en Bogotá. Calcula tu fecha límite DIAN y agenda consulta gratuita.",
     // Image comes from app/opengraph-image.tsx
   },
   twitter: {
     card: "summary_large_image",
     title: "Daniela Campos | Contadora Pública en Fusagasugá",
     description:
-      "Declaración de renta 2026, contabilidad, nómina y revisoría fiscal en Fusagasugá. Calcula tu fecha límite DIAN.",
+      "Declaración de renta 2026, contabilidad, nómina y revisoría fiscal en Fusagasugá y la región, y en Bogotá. Calcula tu fecha límite DIAN.",
     // Image comes from app/twitter-image.tsx
   },
   robots: {
@@ -84,6 +89,15 @@ export const metadata: Metadata = {
   verification: {
     // google: "TU_CÓDIGO_GOOGLE_SEARCH_CONSOLE",
   },
+};
+
+// viewportFit: "cover" activa env(safe-area-inset-*) en iOS/Android, para que
+// el botón flotante de WhatsApp respete la barra de gestos o el notch en
+// lugar de quedar parcialmente tapado por la interfaz del sistema.
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
 };
 
 export default function RootLayout({

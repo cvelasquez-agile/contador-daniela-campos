@@ -22,7 +22,7 @@ const servicios = [
     ),
     titulo: "Contabilidad Integral",
     descripcion: "Registro de operaciones, estados financieros y libros oficiales al día.",
-    detalle: ["Estados financieros mensuales", "Libros contables NIIF", "Conciliaciones bancarias", "Informes gerenciales"],
+    detalle: ["Estados financieros", "Libros contables NIIF", "Conciliaciones bancarias", "Informes gerenciales"],
     destacado: true,
   },
   {
@@ -33,7 +33,7 @@ const servicios = [
     ),
     titulo: "Impuestos Nacionales",
     descripcion: "IVA, retención en la fuente e industria y comercio, al día y sin multas.",
-    detalle: ["Declaraciones de IVA bimestrales", "Retención en la fuente", "Industria y comercio", "Asesoría en beneficios tributarios"],
+    detalle: ["Declaraciones de IVA", "Retención en la fuente", "Industria y comercio", "Asesoría en beneficios tributarios"],
   },
   {
     icon: (
@@ -73,7 +73,7 @@ const servicios = [
     ),
     titulo: "Constitución Empresarial",
     descripcion: "Constitución de empresa, RUT y registro mercantil. Todo en un solo proceso.",
-    detalle: ["Constitución SAS y otros tipos societarios", "Registro mercantil y RUT", "Actualización y corrección de RUT", "Asesoría en régimen tributario"],
+    detalle: ["Constitución SAS y otros tipos societarios", "Registro mercantil y RUT", "Actualización de RUT", "Asesoría en régimen tributario"],
   },
   {
     icon: (
@@ -92,7 +92,7 @@ const servicios = [
       </svg>
     ),
     titulo: "Devolución de Saldos a Favor",
-    descripcion: "Recuperamos ante la DIAN los saldos a favor por retenciones o pagos en exceso.",
+    descripcion: "Recuperamos ante la DIAN los saldos a favor en IVA y en Renta, por retenciones o pagos en exceso.",
     detalle: ["Análisis de viabilidad", "Preparación del expediente DIAN", "Seguimiento del proceso", "Respuesta a requerimientos"],
   },
 ];
@@ -104,7 +104,7 @@ export default function Servicios() {
   const visibles = showAll ? servicios : servicios.slice(0, VISIBLE_DEFAULT);
 
   return (
-    <section id="servicios" className="py-24 bg-[#0F2016]">
+    <section id="servicios" className="py-16 md:py-24 bg-[#0F2016]">
       <div className="max-w-6xl mx-auto px-6">
         {/* Header */}
         <Reveal className="text-center mb-16">

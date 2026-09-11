@@ -35,7 +35,7 @@ export default function Testimonios() {
   const [paused, setPaused] = useState(false);
 
   return (
-    <section id="testimonios" className="bg-[#0F2016] py-24 overflow-hidden">
+    <section id="testimonios" className="bg-[#0F2016] py-16 md:py-24 overflow-hidden">
       <style>{`
         @keyframes marquee {
           0%   { transform: translateX(0); }

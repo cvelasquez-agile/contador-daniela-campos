@@ -1,6 +1,6 @@
 "use client";
 import { useState, FormEvent } from "react";
-import { WHATSAPP_NUMBER } from "@/lib/site";
+import { WHATSAPP_NUMBER, BUSINESS_ADDRESS_LINE, MAPS_EMBED_URL, MAPS_LINK_URL } from "@/lib/site";
 import Reveal from "./Reveal";
 
 export default function Contacto() {
@@ -31,7 +31,7 @@ export default function Contacto() {
   ];
 
   return (
-    <section id="contacto" className="py-24 bg-[#0F2016]">
+    <section id="contacto" className="py-16 md:py-24 bg-[#0F2016]">
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
           {/* Left: info */}
@@ -72,8 +72,18 @@ export default function Contacto() {
                     </svg>
                   ),
                   label: "Ubicación",
-                  value: "Fusagasugá, Cundinamarca",
-                  href: "https://maps.google.com/?q=Fusagasuga+Cundinamarca",
+                  value: BUSINESS_ADDRESS_LINE,
+                  href: MAPS_LINK_URL,
+                },
+                {
+                  icon: (
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+                    </svg>
+                  ),
+                  label: "Zonas que atendemos",
+                  value: "Fusagasugá, Silvania, Subía, Granada, Arbeláez, San Bernardo y Bogotá",
+                  href: `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Hola Daniela, le escribo desde fuera de Fusagasugá, ¿atienden mi zona?")}`,
                 },
               ].map((item) => (
                 <a
@@ -203,6 +213,40 @@ export default function Contacto() {
             )}
           </Reveal>
         </div>
+
+        {/* Mapa interactivo — ayuda al posicionamiento en búsquedas locales
+            ("contador público cerca de mí") al mostrar la ubicación exacta,
+            no solo el nombre de la ciudad. El iframe queda totalmente
+            interactivo (pan/zoom); el enlace "Cómo llegar" va aparte para
+            no taparlo con una capa que bloquee el mapa. */}
+        <Reveal delay={200} className="mt-12 md:mt-16">
+          <div className="rounded-lg overflow-hidden border border-[#C9A84C]/20 h-[300px] md:h-[380px]">
+            <iframe
+              src={MAPS_EMBED_URL}
+              className="w-full h-full grayscale-[25%] contrast-[1.05]"
+              style={{ border: 0 }}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Ubicación de la oficina de Daniela Campos, Contadora Pública"
+            />
+          </div>
+          <div className="flex flex-wrap items-center justify-between gap-3 mt-4">
+            <p className="font-[family-name:var(--font-inter)] text-xs text-[#EDE5D4]/50">
+              {BUSINESS_ADDRESS_LINE}
+            </p>
+            <a
+              href={MAPS_LINK_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-xs font-[family-name:var(--font-inter)] text-[#C9A84C] hover:text-[#E2C97E] transition-colors tracking-wide"
+            >
+              Cómo llegar
+              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
+          </div>
+        </Reveal>
       </div>
     </section>
   );
