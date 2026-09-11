@@ -59,7 +59,10 @@ export default function JsonLd() {
             { "@type": "Offer", itemOffered: { "@type": "Service", name: "Revisoría Fiscal" } },
           ],
         },
-        sameAs: [],
+        sameAs: [
+          "https://www.instagram.com/contadoradanielacampos/",
+          "https://www.facebook.com/share/1Emm5Po1Vp/",
+        ],
       },
       {
         "@type": "Person",

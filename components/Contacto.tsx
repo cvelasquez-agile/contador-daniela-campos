@@ -1,7 +1,14 @@
 "use client";
 import { useState, FormEvent } from "react";
+import Image from "next/image";
 import { WHATSAPP_NUMBER, BUSINESS_ADDRESS_LINE, MAPS_EMBED_URL, MAPS_LINK_URL } from "@/lib/site";
 import Reveal from "./Reveal";
+
+const OFICINA_FOTOS = [
+  { src: "/oficina-fachada.webp", alt: "Fachada de la oficina de Daniela Campos, Contadora Pública, en Fusagasugá" },
+  { src: "/oficina-recepcion.webp", alt: "Área de atención con el logo de Daniela Campos en la pared de la oficina" },
+  { src: "/oficina-interior.webp", alt: "Puestos de trabajo dentro de la oficina de Daniela Campos, Contadora Pública" },
+];
 
 export default function Contacto() {
   const [enviado, setEnviado] = useState(false);
@@ -214,12 +221,36 @@ export default function Contacto() {
           </Reveal>
         </div>
 
+        {/* Fotos reales de la oficina — Daniela las pidió para que "cerca de
+            mí" se sienta un lugar real y no solo un pin en el mapa. */}
+        <Reveal delay={180} className="mt-12 md:mt-16">
+          <p className="font-[family-name:var(--font-inter)] text-xs text-[#C9A84C] tracking-[0.3em] uppercase mb-4">
+            Nuestra oficina
+          </p>
+          <div className="grid grid-cols-3 gap-3 md:gap-4">
+            {OFICINA_FOTOS.map((foto) => (
+              <div
+                key={foto.src}
+                className="group relative aspect-[3/4] rounded-lg overflow-hidden border border-[#C9A84C]/20 hover:border-[#C9A84C]/50 transition-colors"
+              >
+                <Image
+                  src={foto.src}
+                  alt={foto.alt}
+                  fill
+                  sizes="(min-width: 768px) 220px, 30vw"
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+            ))}
+          </div>
+        </Reveal>
+
         {/* Mapa interactivo — ayuda al posicionamiento en búsquedas locales
             ("contador público cerca de mí") al mostrar la ubicación exacta,
             no solo el nombre de la ciudad. El iframe queda totalmente
             interactivo (pan/zoom); el enlace "Cómo llegar" va aparte para
             no taparlo con una capa que bloquee el mapa. */}
-        <Reveal delay={200} className="mt-12 md:mt-16">
+        <Reveal delay={220} className="mt-6 md:mt-8">
           <div className="rounded-lg overflow-hidden border border-[#C9A84C]/20 h-[300px] md:h-[380px]">
             <iframe
               src={MAPS_EMBED_URL}
