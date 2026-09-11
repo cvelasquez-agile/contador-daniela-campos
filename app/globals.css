@@ -57,3 +57,24 @@
     opacity: 0.4;
   }
 }
+
+/* Very slow Ken-Burns breathing on Daniela's portrait, so it reads as a
+   living photo rather than a frozen product shot. */
+@keyframes photo-breathe {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.025); }
+}
+
+.animate-photo-breathe {
+  animation: photo-breathe 10s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-photo-breathe {
+    animation: none;
+  }
+  /* Tailwind's built-in ping (live-countdown dot) also honors reduced motion. */
+  .animate-ping {
+    animation: none;
+  }
+}
