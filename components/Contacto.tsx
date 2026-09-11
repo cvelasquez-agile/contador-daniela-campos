@@ -1,5 +1,5 @@
 "use client";
-import { useState, FormEvent } from "react";
+import { useState, useEffect, FormEvent } from "react";
 import Image from "next/image";
 import { WHATSAPP_NUMBER, BUSINESS_ADDRESS_LINE, MAPS_EMBED_URL, MAPS_LINK_URL } from "@/lib/site";
 import Reveal from "./Reveal";
@@ -13,6 +13,18 @@ const OFICINA_FOTOS = [
 export default function Contacto() {
   const [enviado, setEnviado] = useState(false);
   const [form, setForm] = useState({ nombre: "", empresa: "", telefono: "", servicio: "", mensaje: "" });
+
+  // Ciclo automático de las fotos de la oficina — una a la vez, vertical, al
+  // lado del mapa, en vez de las tres ocupando todo el ancho. Se detiene si
+  // el visitante prefiere menos movimiento en pantalla.
+  const [fotoActiva, setFotoActiva] = useState(0);
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const id = setInterval(() => {
+      setFotoActiva((i) => (i + 1) % OFICINA_FOTOS.length);
+    }, 3500);
+    return () => clearInterval(id);
+  }, []);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -221,46 +233,60 @@ export default function Contacto() {
           </Reveal>
         </div>
 
-        {/* Fotos reales de la oficina — Daniela las pidió para que "cerca de
-            mí" se sienta un lugar real y no solo un pin en el mapa. */}
+        {/* Oficina + mapa, lado a lado: una foto vertical que va rotando sola
+            (más chica, no le roba el protagonismo al mapa) y el mapa
+            ocupando el resto del ancho — más ordenado que las 3 fotos
+            grandes de antes. */}
         <Reveal delay={180} className="mt-12 md:mt-16">
           <p className="font-[family-name:var(--font-inter)] text-xs text-[#C9A84C] tracking-[0.3em] uppercase mb-4">
             Nuestra oficina
           </p>
-          <div className="grid grid-cols-3 gap-3 md:gap-4">
-            {OFICINA_FOTOS.map((foto) => (
-              <div
-                key={foto.src}
-                className="group relative aspect-[3/4] rounded-lg overflow-hidden border border-[#C9A84C]/20 hover:border-[#C9A84C]/50 transition-colors"
-              >
+          <div className="grid grid-cols-1 md:grid-cols-[minmax(0,240px)_1fr] gap-4">
+            {/* Foto vertical rotativa */}
+            <div className="relative h-[220px] md:h-[380px] rounded-lg overflow-hidden border border-[#C9A84C]/20">
+              {OFICINA_FOTOS.map((foto, i) => (
                 <Image
+                  key={foto.src}
                   src={foto.src}
                   alt={foto.alt}
                   fill
-                  sizes="(min-width: 768px) 220px, 30vw"
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  sizes="240px"
+                  priority={i === 0}
+                  className={`object-cover transition-opacity duration-1000 ease-in-out ${
+                    i === fotoActiva ? "opacity-100" : "opacity-0"
+                  }`}
                 />
+              ))}
+              <div className="absolute inset-x-0 bottom-0 h-14 bg-gradient-to-t from-black/50 to-transparent pointer-events-none" />
+              <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-1.5">
+                {OFICINA_FOTOS.map((foto, i) => (
+                  <span
+                    key={foto.src}
+                    className={`w-1.5 h-1.5 rounded-full transition-colors ${
+                      i === fotoActiva ? "bg-[#C9A84C]" : "bg-white/40"
+                    }`}
+                  />
+                ))}
               </div>
-            ))}
-          </div>
-        </Reveal>
+            </div>
 
-        {/* Mapa interactivo — ayuda al posicionamiento en búsquedas locales
-            ("contador público cerca de mí") al mostrar la ubicación exacta,
-            no solo el nombre de la ciudad. El iframe queda totalmente
-            interactivo (pan/zoom); el enlace "Cómo llegar" va aparte para
-            no taparlo con una capa que bloquee el mapa. */}
-        <Reveal delay={220} className="mt-6 md:mt-8">
-          <div className="rounded-lg overflow-hidden border border-[#C9A84C]/20 h-[300px] md:h-[380px]">
-            <iframe
-              src={MAPS_EMBED_URL}
-              className="w-full h-full grayscale-[25%] contrast-[1.05]"
-              style={{ border: 0 }}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="Ubicación de la oficina de Daniela Campos, Contadora Pública"
-            />
+            {/* Mapa interactivo — ayuda al posicionamiento en búsquedas locales
+                ("contador público cerca de mí") al mostrar la ubicación exacta,
+                no solo el nombre de la ciudad. El iframe queda totalmente
+                interactivo (pan/zoom); el enlace "Cómo llegar" va aparte para
+                no taparlo con una capa que bloquee el mapa. */}
+            <div className="rounded-lg overflow-hidden border border-[#C9A84C]/20 h-[300px] md:h-[380px]">
+              <iframe
+                src={MAPS_EMBED_URL}
+                className="w-full h-full grayscale-[25%] contrast-[1.05]"
+                style={{ border: 0 }}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Ubicación de la oficina de Daniela Campos, Contadora Pública"
+              />
+            </div>
           </div>
+
           <div className="flex flex-wrap items-center justify-between gap-3 mt-4">
             <p className="font-[family-name:var(--font-inter)] text-xs text-[#EDE5D4]/50">
               {BUSINESS_ADDRESS_LINE}
