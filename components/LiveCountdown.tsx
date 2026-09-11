@@ -30,6 +30,8 @@ export default function LiveCountdown() {
         <p className="font-[family-name:var(--font-inter)] text-xs text-[#EDE5D4]/70">
           Próximo vencimiento Renta 2026{" "}
           <span className="text-[#C9A84C] font-semibold">{proximo.label}</span>
+          {" · cédulas terminadas en "}
+          <span className="text-[#C9A84C] font-semibold">{proximo.digitsRange}</span>
           {" · "}
           <span className="tabular-nums text-[#F5F0E8] font-semibold">
             {formatRemaining(proximo.endOfDayTs - now!)}

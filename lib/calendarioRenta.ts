@@ -118,15 +118,35 @@ const DAY_MS = 24 * 60 * 60 * 1000;
  * The nearest deadline that hasn't fully elapsed yet, treating each deadline
  * as open through the end of that calendar day (23:59:59.999 local time).
  * Returns null once every date in the calendar has passed.
+ *
+ * Also resolves which cédula-ending digits share that date (per Daniela's
+ * request, the live countdown should say who exactly it applies to — every
+ * DIAN date in this calendar covers a pair of consecutive endings, e.g.
+ * "01" and "02", so `digitsRange` renders that as "01 al 02").
  */
 export function getProximoVencimiento(now: number = Date.now()) {
-  let best: { label: string; endOfDayTs: number } | null = null;
+  let bestTs: number | null = null;
+  let bestEndOfDayTs = Infinity;
+  let bestLabel = "";
   for (const key in CALENDARIO_RENTA) {
     const entry = CALENDARIO_RENTA[key];
     const endOfDayTs = entry.ts + DAY_MS - 1;
-    if (endOfDayTs >= now && (best === null || endOfDayTs < best.endOfDayTs)) {
-      best = { label: entry.label, endOfDayTs };
+    if (endOfDayTs >= now && endOfDayTs < bestEndOfDayTs) {
+      bestEndOfDayTs = endOfDayTs;
+      bestTs = entry.ts;
+      bestLabel = entry.label;
     }
   }
-  return best;
+  if (bestTs === null) return null;
+
+  const digits = Object.keys(CALENDARIO_RENTA)
+    .filter((key) => CALENDARIO_RENTA[key].ts === bestTs)
+    .sort();
+
+  return {
+    label: bestLabel,
+    endOfDayTs: bestEndOfDayTs,
+    digits,
+    digitsRange: digits.length <= 1 ? digits.join("") : `${digits[0]} al ${digits[digits.length - 1]}`,
+  };
 }
