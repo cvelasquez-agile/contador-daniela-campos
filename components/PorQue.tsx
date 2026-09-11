@@ -1,4 +1,6 @@
-const WA = "573028031478";
+import { WHATSAPP_NUMBER as WA } from "@/lib/site";
+import ProcesoSteps from "./ProcesoSteps";
+import Reveal from "./Reveal";
 
 const manifesto = [
   {
@@ -18,24 +20,6 @@ const manifesto = [
   },
 ];
 
-const proceso = [
-  {
-    paso: "1",
-    titulo: "Diagnóstico gratuito",
-    desc: "Revisamos su situación tributaria y contable sin costo. 30 minutos que pueden ahorrarle millones.",
-  },
-  {
-    paso: "2",
-    titulo: "Propuesta a su medida",
-    desc: "Sin paquetes genéricos. El plan se adapta al tamaño, sector y necesidades reales de su negocio.",
-  },
-  {
-    paso: "3",
-    titulo: "Ejecución y tranquilidad",
-    desc: "Usted se dedica a su negocio. Daniela se encarga de que todo esté al día, siempre.",
-  },
-];
-
 export default function PorQue() {
   return (
     <section id="por-que" className="bg-[#081510] overflow-hidden">
@@ -50,88 +34,50 @@ export default function PorQue() {
         </div>
 
         <div className="space-y-0">
-          {manifesto.map((m) => (
-            <div
-              key={m.num}
-              className="group grid grid-cols-1 md:grid-cols-[72px_1fr_1fr] gap-6 md:gap-10 py-10 border-b border-[#C9A84C]/10 hover:border-[#C9A84C]/30 transition-colors"
-            >
-              {/* Number */}
-              <span
-                className="font-[family-name:var(--font-playfair)] font-bold text-[#C9A84C]/15 group-hover:text-[#C9A84C]/30 transition-colors leading-none select-none"
-                style={{ fontSize: "3.5rem" }}
-              >
-                {m.num}
-              </span>
+          {manifesto.map((m, i) => (
+            <Reveal key={m.num} delay={i * 100}>
+              <div className="group grid grid-cols-1 md:grid-cols-[72px_1fr_1fr] gap-6 md:gap-10 py-10 border-b border-[#C9A84C]/10 hover:border-[#C9A84C]/30 transition-colors">
+                {/* Number */}
+                <span
+                  className="font-[family-name:var(--font-playfair)] font-bold text-[#C9A84C]/15 group-hover:text-[#C9A84C]/30 transition-colors leading-none select-none"
+                  style={{ fontSize: "3.5rem" }}
+                >
+                  {m.num}
+                </span>
 
-              {/* Statement */}
-              <h3
-                className="font-[family-name:var(--font-playfair)] font-bold text-[#F5F0E8] leading-tight self-center"
-                style={{ fontSize: "clamp(1.25rem,2.2vw,1.75rem)" }}
-              >
-                {m.statement}
-              </h3>
+                {/* Statement */}
+                <h3
+                  className="font-[family-name:var(--font-playfair)] font-bold text-[#F5F0E8] leading-tight self-center"
+                  style={{ fontSize: "clamp(1.25rem,2.2vw,1.75rem)" }}
+                >
+                  {m.statement}
+                </h3>
 
-              {/* Body */}
-              <p className="font-[family-name:var(--font-inter)] text-sm text-[#EDE5D4]/60 leading-relaxed self-center">
-                {m.body}
-              </p>
-            </div>
+                {/* Body */}
+                <p className="font-[family-name:var(--font-inter)] text-sm text-[#EDE5D4]/60 leading-relaxed self-center">
+                  {m.body}
+                </p>
+              </div>
+            </Reveal>
           ))}
         </div>
       </div>
 
       {/* -- PROCESO – full-width dark band -- */}
       <div className="relative mt-16 bg-[#0F2016] border-t border-b border-[#C9A84C]/15 overflow-hidden">
-        {/* Ghost number */}
-        <span
-          aria-hidden="true"
-          className="absolute right-0 top-1/2 -translate-y-1/2 font-[family-name:var(--font-playfair)] font-bold pointer-events-none select-none leading-none"
-          style={{ fontSize: "22vw", color: "rgba(201,168,76,0.03)", lineHeight: 1 }}
-        >
-          DC
-        </span>
-
         <div className="relative max-w-6xl mx-auto px-6 py-20">
-          <p className="font-[family-name:var(--font-inter)] text-xs text-[#C9A84C] tracking-[0.3em] uppercase mb-12">
-            Así trabajamos
-          </p>
+          <Reveal>
+            <p className="font-[family-name:var(--font-inter)] text-xs text-[#C9A84C] tracking-[0.3em] uppercase mb-12">
+              Así trabajamos
+            </p>
+          </Reveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-0 md:gap-0">
-            {proceso.map((p, i) => (
-              <div key={p.paso} className="relative flex flex-col md:pr-12">
-                {/* Connector line (not last) */}
-                {i < proceso.length - 1 && (
-                  <div className="hidden md:block absolute right-0 top-8 w-px h-full bg-gradient-to-b from-[#C9A84C]/30 to-transparent" />
-                )}
-
-                <div className="flex items-center gap-4 mb-4">
-                  <span
-                    className="font-[family-name:var(--font-playfair)] font-bold text-[#C9A84C]"
-                    style={{ fontSize: "3rem", lineHeight: 1 }}
-                  >
-                    {p.paso}
-                  </span>
-                  <span className="flex-1 h-px bg-[#C9A84C]/20 md:hidden" />
-                </div>
-
-                <h4 className="font-[family-name:var(--font-playfair)] text-lg font-bold text-[#F5F0E8] mb-3">
-                  {p.titulo}
-                </h4>
-                <p className="font-[family-name:var(--font-inter)] text-sm text-[#EDE5D4]/60 leading-relaxed">
-                  {p.desc}
-                </p>
-
-                {i < proceso.length - 1 && (
-                  <div className="md:hidden my-8 h-px bg-[#C9A84C]/10" />
-                )}
-              </div>
-            ))}
-          </div>
+          <ProcesoSteps />
         </div>
       </div>
 
       {/* -- QUOTE / CTA BAND -- */}
-      <div className="max-w-6xl mx-auto px-6 py-24">
+      <Reveal className="max-w-6xl mx-auto px-6 py-24">
         <div className="relative rounded-2xl border border-[#C9A84C]/30 bg-[#F5F0E8] p-10 md:p-16 overflow-hidden">
           {/* Background decoration */}
           <div className="absolute top-0 right-0 w-64 h-64 rounded-full bg-[#C9A84C]/15 blur-3xl pointer-events-none" />
@@ -177,7 +123,7 @@ export default function PorQue() {
             </footer>
           </blockquote>
         </div>
-      </div>
+      </Reveal>
     </section>
   );
 }

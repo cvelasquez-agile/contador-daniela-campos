@@ -1,4 +1,5 @@
 import Logo from "./Logo";
+import { WHATSAPP_NUMBER } from "@/lib/site";
 
 export default function Footer() {
   return (
@@ -36,7 +37,7 @@ export default function Footer() {
 
       {/* WhatsApp flotante */}
       <a
-        href={`https://wa.me/573028031478?text=${encodeURIComponent("Hola Daniela, vi su sitio web y me gustaría más información")}`}
+        href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Hola Daniela, vi su sitio web y me gustaría más información")}`}
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-14 h-14 rounded-full bg-[#25D366] flex items-center justify-center shadow-lg hover:scale-110 transition-transform"

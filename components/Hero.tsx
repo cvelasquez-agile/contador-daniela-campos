@@ -1,6 +1,8 @@
 "use client";
 import { useState, useRef } from "react";
 import Image from "next/image";
+import { WHATSAPP_NUMBER as WA } from "@/lib/site";
+import CountUp from "./CountUp";
 
 const CALENDARIO: Record<string, { label: string; ts: number }> = {
   "01": { label: "11 Ago 2026", ts: new Date(2026, 7, 11).getTime() },
@@ -110,23 +112,29 @@ function getDias(ts: number) {
   return Math.ceil((ts - now.getTime()) / 86400000);
 }
 
-const WA = "573028031478";
-
 function CalculatorCard({
-  digits,
+  digit0,
+  digit1,
+  ref0,
+  ref1,
+  onDigitChange,
+  onDigitKeyDown,
   result,
   urgency,
   waMsg,
-  inputRef,
-  handleInput,
 }: {
-  digits: string;
+  digit0: string;
+  digit1: string;
+  ref0: React.RefObject<HTMLInputElement | null>;
+  ref1: React.RefObject<HTMLInputElement | null>;
+  onDigitChange: (index: 0 | 1, value: string) => void;
+  onDigitKeyDown: (index: 0 | 1, e: React.KeyboardEvent<HTMLInputElement>) => void;
   result: { label: string; dias: number } | null;
   urgency: { ring: string; pill: string; dot: string; date: string; msg: string } | null;
   waMsg: string;
-  inputRef: React.RefObject<HTMLInputElement | null>;
-  handleInput: (v: string) => void;
 }) {
+  const boxClass =
+    "w-14 h-16 bg-[#081510] border border-[#C9A84C]/20 focus:border-[#C9A84C]/70 rounded-xl text-center font-[family-name:var(--font-playfair)] font-bold text-[#F5F0E8] focus:outline-none transition-all";
   return (
     <div
       className={`relative rounded-2xl border border-[#C9A84C]/25 bg-[#0F2016]/95 backdrop-blur-sm transition-all duration-500 ${result && urgency ? `ring-2 ${urgency.ring}` : ""}`}
@@ -150,23 +158,38 @@ function CalculatorCard({
           Dos últimos dígitos de tu cédula
         </p>
 
-        <div
-          className="relative cursor-text mb-3"
-          onClick={() => inputRef.current?.focus()}
-        >
+        <div className="flex items-center justify-center gap-3 mb-2">
           <input
-            ref={inputRef}
+            ref={ref0}
             type="text"
             inputMode="numeric"
-            maxLength={2}
-            value={digits}
-            onChange={(e) => handleInput(e.target.value)}
-            placeholder="_ _"
-            aria-label="Dos últimos dígitos de tu cédula"
-            className="w-full bg-[#081510] border border-[#C9A84C]/20 focus:border-[#C9A84C]/70 rounded-xl px-6 py-3 text-center font-[family-name:var(--font-playfair)] font-bold text-[#F5F0E8] placeholder-[#EDE5D4]/12 focus:outline-none transition-all tracking-[0.5em]"
-            style={{ fontSize: "clamp(1.5rem,5vw,2rem)" }}
+            maxLength={1}
+            value={digit0}
+            onChange={(e) => onDigitChange(0, e.target.value)}
+            onKeyDown={(e) => onDigitKeyDown(0, e)}
+            placeholder="_"
+            aria-label="Primer dígito de tu cédula"
+            className={boxClass}
+            style={{ fontSize: "1.75rem" }}
+          />
+          <span className="text-[#EDE5D4]/25 text-xl" aria-hidden="true">·</span>
+          <input
+            ref={ref1}
+            type="text"
+            inputMode="numeric"
+            maxLength={1}
+            value={digit1}
+            onChange={(e) => onDigitChange(1, e.target.value)}
+            onKeyDown={(e) => onDigitKeyDown(1, e)}
+            placeholder="_"
+            aria-label="Segundo dígito de tu cédula"
+            className={boxClass}
+            style={{ fontSize: "1.75rem" }}
           />
         </div>
+        <p className="font-[family-name:var(--font-inter)] text-[10px] text-[#EDE5D4]/60 text-center mb-3">
+          No guardamos ni compartimos este dato — el cálculo ocurre en su navegador
+        </p>
 
         {result && urgency ? (
           <div className="space-y-3">
@@ -227,18 +250,31 @@ function CalculatorCard({
 }
 
 export default function Hero() {
-  const [digits, setDigits] = useState("");
+  const [digit0, setDigit0] = useState("");
+  const [digit1, setDigit1] = useState("");
   const [result, setResult] = useState<{ label: string; dias: number } | null>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
+  const ref0 = useRef<HTMLInputElement>(null);
+  const ref1 = useRef<HTMLInputElement>(null);
 
-  const handleInput = (v: string) => {
-    const clean = v.replace(/\D/g, "").slice(0, 2);
-    setDigits(clean);
-    if (clean.length === 2) {
-      const e = CALENDARIO[clean.padStart(2, "0")];
-      if (e) setResult({ label: e.label, dias: getDias(e.ts) });
+  const handleDigitChange = (index: 0 | 1, raw: string) => {
+    const val = raw.replace(/\D/g, "").slice(-1);
+    const next0 = index === 0 ? val : digit0;
+    const next1 = index === 1 ? val : digit1;
+    if (index === 0) setDigit0(val); else setDigit1(val);
+
+    if (next0 && next1) {
+      const e = CALENDARIO[next0 + next1];
+      setResult(e ? { label: e.label, dias: getDias(e.ts) } : null);
     } else {
       setResult(null);
+    }
+
+    if (index === 0 && val) ref1.current?.focus();
+  };
+
+  const handleDigitKeyDown = (index: 0 | 1, e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Backspace" && index === 1 && !digit1) {
+      ref0.current?.focus();
     }
   };
 
@@ -258,22 +294,23 @@ export default function Hero() {
       : `Hola Daniela, calculé mi fecha límite de renta 2026: *${result.label}* (${result.dias} días). Quiero que me ayude a prepararla.`
     : `Hola Daniela, quiero información sobre la declaración de renta 2026.`;
 
-  const calcProps = { digits, result, urgency, waMsg, inputRef, handleInput };
+  const calcProps = {
+    digit0,
+    digit1,
+    ref0,
+    ref1,
+    onDigitChange: handleDigitChange,
+    onDigitKeyDown: handleDigitKeyDown,
+    result,
+    urgency,
+    waMsg,
+  };
 
   return (
     <section
       id="renta-2026"
       className="relative min-h-screen flex overflow-hidden bg-[#081510]"
     >
-      {/* Ghost background text */}
-      <span
-        aria-hidden="true"
-        className="absolute left-1/4 top-1/2 -translate-x-1/2 -translate-y-1/2 font-[family-name:var(--font-playfair)] font-bold select-none pointer-events-none whitespace-nowrap z-0"
-        style={{ fontSize: "clamp(100px,20vw,260px)", color: "rgba(201,168,76,0.035)", letterSpacing: "-0.04em" }}
-      >
-        RENTA
-      </span>
-
       {/* Dot grid */}
       <div
         aria-hidden="true"
@@ -294,7 +331,13 @@ export default function Hero() {
             read well (the floating card needs room above it to clear the face) — that's only
             reliably true at xl+, so everything narrower gets one full-width portrait instead
             of a photo squeezed thin and buried behind the card. */}
-        <div className="xl:hidden relative w-full shrink-0 mt-16 h-[clamp(260px,55vw,460px)]">
+        <div className="xl:hidden relative w-full shrink-0 mt-16 h-[clamp(260px,55vw,460px)] animate-fade-rise [animation-delay:150ms]">
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 flex items-center justify-center pointer-events-none"
+          >
+            <div className="w-2/3 h-2/3 rounded-full bg-[#C9A84C]/25 blur-[70px] animate-ambient-glow" />
+          </div>
           <Image
             src="/daniela.webp"
             alt="Daniela Campos, Contadora Pública en Fusagasugá"
@@ -312,7 +355,7 @@ export default function Hero() {
           <div className="max-w-xl w-full">
 
             {/* Overline */}
-            <div className="flex items-center gap-2 mb-8">
+            <div className="flex items-center gap-2 mb-8 animate-fade-rise">
               <span className="w-8 h-px bg-[#C9A84C]" />
               <span className="font-[family-name:var(--font-inter)] text-xs text-[#C9A84C] tracking-[0.25em] uppercase">
                 Fusagasugá · Cundinamarca
@@ -321,7 +364,7 @@ export default function Hero() {
 
             {/* Headline */}
             <h1
-              className="font-[family-name:var(--font-playfair)] font-bold leading-[1.05] mb-4"
+              className="font-[family-name:var(--font-playfair)] font-bold leading-[1.05] mb-4 animate-fade-rise [animation-delay:80ms]"
               style={{ fontSize: "clamp(2.4rem,4.5vw,4rem)" }}
             >
               <span className="text-[#F5F0E8]">Contabilidad<br />sin sorpresas.</span>
@@ -330,25 +373,25 @@ export default function Hero() {
             </h1>
 
             {/* Subtitle */}
-            <div className="flex items-center gap-3 mb-6">
+            <div className="flex items-center gap-3 mb-6 animate-fade-rise [animation-delay:180ms]">
               <p className="font-[family-name:var(--font-playfair)] text-[#EDE5D4]/60 text-base italic">
                 Daniela Campos · Contadora Pública
               </p>
             </div>
 
             {/* Paragraph */}
-            <p className="font-[family-name:var(--font-inter)] text-[#EDE5D4]/55 text-sm leading-relaxed mb-10 max-w-md">
+            <p className="font-[family-name:var(--font-inter)] text-[#EDE5D4]/55 text-sm leading-relaxed mb-10 max-w-md animate-fade-rise [animation-delay:250ms]">
               Personas y empresas en Fusagasugá que cumplen sus obligaciones a tiempo, sin carreras de último momento.
             </p>
 
             {/* Trust row */}
-            <div className="flex flex-wrap gap-x-6 gap-y-3 mb-10">
+            <div className="flex flex-wrap gap-x-6 gap-y-3 mb-10 animate-fade-rise [animation-delay:320ms]">
               {[
-                { icon: "✦", text: "+10 años de experiencia" },
-                { icon: "✦", text: "+200 clientes activos" },
+                { icon: "✦", text: <><CountUp to={10} prefix="+" /> años de experiencia</> },
+                { icon: "✦", text: <><CountUp to={200} prefix="+" /> clientes activos</> },
                 { icon: "✦", text: "Atención directa" },
-              ].map((t) => (
-                <div key={t.text} className="flex items-center gap-2">
+              ].map((t, i) => (
+                <div key={i} className="flex items-center gap-2">
                   <span className="text-[#C9A84C] text-[10px]">{t.icon}</span>
                   <span className="font-[family-name:var(--font-inter)] text-xs text-[#EDE5D4]/60 tracking-wide">
                     {t.text}
@@ -358,7 +401,7 @@ export default function Hero() {
             </div>
 
             {/* CTAs */}
-            <div className="flex flex-wrap gap-3 mb-10">
+            <div className="flex flex-wrap gap-3 mb-10 animate-fade-rise [animation-delay:390ms]">
               <a
                 href={`https://wa.me/${WA}?text=${encodeURIComponent(waMsg)}`}
                 target="_blank" rel="noopener noreferrer"
@@ -390,7 +433,13 @@ export default function Hero() {
           {/* Portrait — sized to its own aspect ratio (not stretched to viewport height), so the
               floating card below is anchored to the photo itself and stays correctly placed no
               matter how tall or short the screen is (laptop, ultrawide, etc). */}
-          <div className="relative w-full">
+          <div className="relative w-full animate-fade-rise [animation-delay:200ms]">
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 flex items-center justify-center pointer-events-none"
+            >
+              <div className="w-1/2 h-1/2 rounded-full bg-[#C9A84C]/25 blur-[90px] animate-ambient-glow" />
+            </div>
             <Image
               src="/daniela.webp"
               alt="Daniela Campos, Contadora Pública en Fusagasugá"

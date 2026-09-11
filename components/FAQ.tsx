@@ -1,8 +1,8 @@
 "use client";
 import { useState } from "react";
 import { FAQS } from "@/lib/faqs";
-
-const WA = "573028031478";
+import { WHATSAPP_NUMBER as WA } from "@/lib/site";
+import Reveal from "./Reveal";
 
 export default function FAQ() {
   const [open, setOpen] = useState<number | null>(null);
@@ -10,7 +10,7 @@ export default function FAQ() {
   return (
     <section id="faq" className="bg-[#081510] py-24">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="mb-14">
+        <Reveal className="mb-14">
           <div className="flex items-center gap-2 mb-3">
             <span className="w-8 h-px bg-[#C9A84C]" />
             <span className="font-[family-name:var(--font-inter)] text-xs text-[#C9A84C] tracking-[0.25em] uppercase">
@@ -23,21 +23,11 @@ export default function FAQ() {
           >
             Todo lo que necesita saber
           </h2>
-        </div>
+        </Reveal>
 
         <div className="grid lg:grid-cols-[280px_1fr] gap-12 xl:gap-20 items-start">
           {/* LEFT */}
-          <div className="hidden lg:flex flex-col gap-8">
-            <div className="relative h-48 overflow-hidden select-none pointer-events-none">
-              <span
-                aria-hidden="true"
-                className="absolute font-[family-name:var(--font-playfair)] font-bold text-[#C9A84C]/6 leading-none"
-                style={{ fontSize: "9rem", transform: "rotate(-90deg) translateX(-60px) translateY(60px)", transformOrigin: "left center", whiteSpace: "nowrap" }}
-              >
-                FAQ
-              </span>
-            </div>
-
+          <Reveal className="hidden lg:flex flex-col gap-8">
             <div className="rounded-2xl border border-[#C9A84C]/20 bg-[#0F2016]/60 p-6">
               <div className="w-8 h-8 rounded-full bg-[#C9A84C]/15 border border-[#C9A84C]/30 flex items-center justify-center mb-4">
                 <svg className="w-4 h-4 text-[#C9A84C]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -61,7 +51,7 @@ export default function FAQ() {
                 Escríbanos
               </a>
             </div>
-          </div>
+          </Reveal>
 
           {/* RIGHT: Accordion */}
           <div className="divide-y divide-[#C9A84C]/10">
@@ -69,7 +59,7 @@ export default function FAQ() {
               const isOpen = open === idx;
               const num = String(idx + 1).padStart(2, "0");
               return (
-                <div key={idx} className="group">
+                <Reveal key={idx} delay={Math.min(idx * 40, 320)} className="group">
                   <h3>
                     <button
                       className="w-full text-left py-6 flex items-start gap-5 transition-colors focus:outline-none"
@@ -116,7 +106,7 @@ export default function FAQ() {
                       </p>
                     </div>
                   </div>
-                </div>
+                </Reveal>
               );
             })}
           </div>

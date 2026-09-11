@@ -1,5 +1,7 @@
 "use client";
 import { useState, FormEvent } from "react";
+import { WHATSAPP_NUMBER } from "@/lib/site";
+import Reveal from "./Reveal";
 
 export default function Contacto() {
   const [enviado, setEnviado] = useState(false);
@@ -15,7 +17,7 @@ export default function Contacto() {
       `*Servicio de interés:* ${form.servicio}\n` +
       `*Mensaje:* ${form.mensaje}`
     );
-    window.open(`https://wa.me/573028031478?text=${texto}`, "_blank");
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${texto}`, "_blank");
     setEnviado(true);
     setTimeout(() => setEnviado(false), 5000);
   };
@@ -33,7 +35,7 @@ export default function Contacto() {
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
           {/* Left: info */}
-          <div className="flex flex-col justify-center">
+          <Reveal className="flex flex-col justify-center">
             <p className="font-[family-name:var(--font-inter)] text-xs text-[#C9A84C] tracking-[0.3em] uppercase mb-4">
               Hablemos
             </p>
@@ -60,7 +62,7 @@ export default function Contacto() {
                   ),
                   label: "WhatsApp",
                   value: "+57 302 8031478",
-                  href: "https://wa.me/573028031478",
+                  href: `https://wa.me/${WHATSAPP_NUMBER}`,
                 },
                 {
                   icon: (
@@ -93,10 +95,10 @@ export default function Contacto() {
                 </a>
               ))}
             </div>
-          </div>
+          </Reveal>
 
           {/* Right: form */}
-          <div className="bg-[#162B1E] border border-[#C9A84C]/20 rounded-lg p-5 sm:p-8">
+          <Reveal delay={120} className="bg-[#162B1E] border border-[#C9A84C]/20 rounded-lg p-5 sm:p-8">
             {enviado ? (
               <div className="flex flex-col items-center justify-center h-full py-12 text-center">
                 <div className="w-16 h-16 rounded-full bg-[#C9A84C]/10 border border-[#C9A84C]/40 flex items-center justify-center mb-4">
@@ -199,7 +201,7 @@ export default function Contacto() {
                 </button>
               </form>
             )}
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

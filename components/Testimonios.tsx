@@ -1,4 +1,6 @@
 "use client";
+import { useState } from "react";
+import Reveal from "./Reveal";
 
 const REVIEWS = [
   {
@@ -30,6 +32,8 @@ const REVIEWS = [
 const TRACK = [...REVIEWS, ...REVIEWS];
 
 export default function Testimonios() {
+  const [paused, setPaused] = useState(false);
+
   return (
     <section id="testimonios" className="bg-[#0F2016] py-24 overflow-hidden">
       <style>{`
@@ -46,30 +50,58 @@ export default function Testimonios() {
         .marquee-track:hover {
           animation-play-state: paused;
         }
+        @media (prefers-reduced-motion: reduce) {
+          .marquee-track {
+            animation: none;
+          }
+        }
       `}</style>
 
       {/* Header */}
-      <div className="max-w-7xl mx-auto px-6 mb-12">
-        <div className="flex items-center gap-2 mb-3">
-          <span className="w-8 h-px bg-[#C9A84C]" />
-          <span className="font-[family-name:var(--font-inter)] text-xs text-[#C9A84C] tracking-[0.25em] uppercase">
-            Testimonios
-          </span>
+      <Reveal className="max-w-7xl mx-auto px-6 mb-12 flex items-end justify-between gap-6">
+        <div>
+          <div className="flex items-center gap-2 mb-3">
+            <span className="w-8 h-px bg-[#C9A84C]" />
+            <span className="font-[family-name:var(--font-inter)] text-xs text-[#C9A84C] tracking-[0.25em] uppercase">
+              Testimonios
+            </span>
+          </div>
+          <h2
+            className="font-[family-name:var(--font-playfair)] font-bold text-[#F5F0E8] leading-tight"
+            style={{ fontSize: "clamp(1.8rem,4vw,3rem)" }}
+          >
+            Lo que dicen nuestros clientes
+          </h2>
         </div>
-        <h2
-          className="font-[family-name:var(--font-playfair)] font-bold text-[#F5F0E8] leading-tight"
-          style={{ fontSize: "clamp(1.8rem,4vw,3rem)" }}
+
+        <button
+          type="button"
+          onClick={() => setPaused((p) => !p)}
+          aria-pressed={paused}
+          aria-label={paused ? "Reanudar el desplazamiento de reseñas" : "Pausar el desplazamiento de reseñas"}
+          className="flex-shrink-0 w-10 h-10 rounded-full border border-[#C9A84C]/30 text-[#C9A84C] flex items-center justify-center hover:border-[#C9A84C]/60 hover:bg-[#C9A84C]/10 transition-colors mb-1"
         >
-          Lo que dicen nuestros clientes
-        </h2>
-      </div>
+          {paused ? (
+            <svg className="w-4 h-4 ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+          ) : (
+            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M6 5h4v14H6zm8 0h4v14h-4z" />
+            </svg>
+          )}
+        </button>
+      </Reveal>
 
       {/* Marquee */}
       <div className="relative">
         <div className="absolute left-0 top-0 bottom-0 w-8 sm:w-16 md:w-24 bg-gradient-to-r from-[#0F2016] to-transparent z-10 pointer-events-none" />
         <div className="absolute right-0 top-0 bottom-0 w-8 sm:w-16 md:w-24 bg-gradient-to-l from-[#0F2016] to-transparent z-10 pointer-events-none" />
 
-        <div className="marquee-track px-4">
+        <div
+          className="marquee-track px-4"
+          style={paused ? { animationPlayState: "paused" } : undefined}
+        >
           {TRACK.map((r, idx) => (
             <div
               key={idx}

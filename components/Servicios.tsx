@@ -1,3 +1,7 @@
+"use client";
+import { useState } from "react";
+import Reveal from "./Reveal";
+
 const servicios = [
   {
     icon: (
@@ -93,12 +97,17 @@ const servicios = [
   },
 ];
 
+const VISIBLE_DEFAULT = 6;
+
 export default function Servicios() {
+  const [showAll, setShowAll] = useState(false);
+  const visibles = showAll ? servicios : servicios.slice(0, VISIBLE_DEFAULT);
+
   return (
     <section id="servicios" className="py-24 bg-[#0F2016]">
       <div className="max-w-6xl mx-auto px-6">
         {/* Header */}
-        <div className="text-center mb-16">
+        <Reveal className="text-center mb-16">
           <p className="font-[family-name:var(--font-inter)] text-xs text-[#C9A84C] tracking-[0.3em] uppercase mb-4">
             Portafolio de servicios
           </p>
@@ -112,55 +121,74 @@ export default function Servicios() {
           <p className="font-[family-name:var(--font-inter)] text-sm text-[#EDE5D4]/60 max-w-xl mx-auto">
             Gestión contable y tributaria cercana, precisa y a tiempo.
           </p>
-        </div>
+        </Reveal>
 
         {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {servicios.map((s, i) => (
-            <div
-              key={i}
-              className={`group relative p-7 border rounded-lg transition-all duration-300 ${
-                s.destacado
-                  ? "border-[#C9A84C]/45 bg-[#1B2E1F] hover:border-[#C9A84C]/70 hover:bg-[#213524]"
-                  : "border-[#C9A84C]/20 bg-[#162B1E] hover:border-[#C9A84C]/60 hover:bg-[#1A3325]"
-              }`}
-            >
-              <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#C9A84C]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-
-              {s.destacado && (
-                <span className="absolute top-5 right-5 text-[9px] font-[family-name:var(--font-inter)] tracking-[0.15em] uppercase text-[#C9A84C] border border-[#C9A84C]/40 rounded-full px-2 py-0.5">
-                  Más solicitado
-                </span>
-              )}
-
+          {visibles.map((s, i) => (
+            <Reveal key={i} delay={(i % 3) * 100}>
               <div
-                className={`text-[#C9A84C] mb-4 inline-flex items-center justify-center ${
-                  s.destacado ? "w-12 h-12 rounded-full bg-[#C9A84C]/12" : ""
+                className={`group relative p-7 border rounded-lg transition-all duration-300 hover:-translate-y-1 ${
+                  s.destacado
+                    ? "border-[#C9A84C]/45 bg-[#1B2E1F] hover:border-[#C9A84C]/70 hover:bg-[#213524]"
+                    : "border-[#C9A84C]/20 bg-[#162B1E] hover:border-[#C9A84C]/60 hover:bg-[#1A3325]"
                 }`}
               >
-                {s.icon}
+                <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#C9A84C]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+
+                {s.destacado && (
+                  <span className="absolute top-5 right-5 text-[9px] font-[family-name:var(--font-inter)] tracking-[0.15em] uppercase text-[#C9A84C] border border-[#C9A84C]/40 rounded-full px-2 py-0.5">
+                    Más solicitado
+                  </span>
+                )}
+
+                <div
+                  className={`text-[#C9A84C] mb-4 inline-flex items-center justify-center ${
+                    s.destacado ? "w-12 h-12 rounded-full bg-[#C9A84C]/12" : ""
+                  }`}
+                >
+                  {s.icon}
+                </div>
+
+                <h3 className="font-[family-name:var(--font-playfair)] text-lg font-bold text-[#F5F0E8] mb-2">
+                  {s.titulo}
+                </h3>
+                <p className="font-[family-name:var(--font-inter)] text-xs text-[#EDE5D4]/55 leading-relaxed mb-4">
+                  {s.descripcion}
+                </p>
+
+                <ul className="space-y-1.5">
+                  {s.detalle.map((d) => (
+                    <li key={d} className="flex items-start gap-2">
+                      <span className="mt-1.5 w-1 h-1 rounded-full bg-[#C9A84C] flex-shrink-0" />
+                      <span className="font-[family-name:var(--font-inter)] text-xs text-[#EDE5D4]/55">
+                        {d}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-
-              <h3 className="font-[family-name:var(--font-playfair)] text-lg font-bold text-[#F5F0E8] mb-2">
-                {s.titulo}
-              </h3>
-              <p className="font-[family-name:var(--font-inter)] text-xs text-[#EDE5D4]/55 leading-relaxed mb-4">
-                {s.descripcion}
-              </p>
-
-              <ul className="space-y-1.5">
-                {(s.destacado ? s.detalle : s.detalle.slice(0, 2)).map((d) => (
-                  <li key={d} className="flex items-start gap-2">
-                    <span className="mt-1.5 w-1 h-1 rounded-full bg-[#C9A84C] flex-shrink-0" />
-                    <span className="font-[family-name:var(--font-inter)] text-xs text-[#EDE5D4]/55">
-                      {d}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            </Reveal>
           ))}
         </div>
+
+        {servicios.length > VISIBLE_DEFAULT && (
+          <div className="text-center mt-12">
+            <button
+              type="button"
+              onClick={() => setShowAll((v) => !v)}
+              className="inline-flex items-center gap-2 px-6 py-3 border border-[#C9A84C]/30 text-[#C9A84C] hover:border-[#C9A84C]/60 hover:bg-[#C9A84C]/10 transition-colors text-sm rounded-lg font-[family-name:var(--font-inter)] tracking-wider"
+            >
+              {showAll ? "Ver menos" : `Ver los ${servicios.length} servicios`}
+              <svg
+                className={`w-4 h-4 transition-transform ${showAll ? "rotate-180" : ""}`}
+                fill="none" stroke="currentColor" viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );

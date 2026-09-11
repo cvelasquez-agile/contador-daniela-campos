@@ -1,5 +1,5 @@
 import { FAQS } from "@/lib/faqs";
-import { SITE_URL } from "@/lib/site";
+import { SITE_URL, WHATSAPP_NUMBER } from "@/lib/site";
 
 export default function JsonLd() {
   const schema = {
@@ -12,7 +12,7 @@ export default function JsonLd() {
         description:
           "Estudio contable en Fusagasugá, Cundinamarca. Servicios de declaración de renta, contabilidad empresarial, nómina, seguridad social y revisoría fiscal para personas naturales y empresas.",
         url: SITE_URL,
-        telephone: "+573028031478",
+        telephone: `+${WHATSAPP_NUMBER}`,
         priceRange: "$$",
         currenciesAccepted: "COP",
         paymentAccepted: "Efectivo, Transferencia bancaria",
