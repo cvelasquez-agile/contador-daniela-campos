@@ -21,6 +21,21 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // "Renta 2026" apuntaba al <section> del Hero completo: en el layout apilado
+  // de móvil/tablet la calculadora queda varias pantallas más abajo (foto,
+  // titular, contador, CTAs...), así que llegar al "tope" de la sección se
+  // sentía como si el link no llevara a ningún lado. Ahora salta directo a la
+  // tarjeta de la calculadora que esté realmente visible (hay dos en el DOM,
+  // una para móvil/tablet y otra flotante de escritorio; solo una se muestra
+  // por breakpoint).
+  const scrollToCalculator = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const cards = document.querySelectorAll<HTMLElement>("[data-calculator-card]");
+    const visible = Array.from(cards).find((el) => el.offsetParent !== null);
+    const target = visible ?? document.getElementById("renta-2026");
+    target?.scrollIntoView({ behavior: "smooth", block: "center" });
+  };
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -38,6 +53,7 @@ export default function Navbar() {
             <li key={l.href}>
               <a
                 href={l.href}
+                onClick={l.href === "#renta-2026" ? scrollToCalculator : undefined}
                 className="text-sm font-[family-name:var(--font-inter)] text-[#EDE5D4]/80 hover:text-[#C9A84C] transition-colors tracking-wider uppercase"
               >
                 {l.label}
@@ -79,7 +95,10 @@ export default function Navbar() {
             <a
               key={l.href}
               href={l.href}
-              onClick={() => setOpen(false)}
+              onClick={(e) => {
+                setOpen(false);
+                if (l.href === "#renta-2026") scrollToCalculator(e);
+              }}
               className="text-[#EDE5D4]/80 hover:text-[#C9A84C] tracking-wider uppercase text-sm py-3 border-b border-[#C9A84C]/10 last:border-0"
             >
               {l.label}

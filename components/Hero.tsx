@@ -265,7 +265,7 @@ export default function Hero() {
           </div>
           <div className="absolute inset-0 overflow-hidden">
             <Image
-              src="/daniela.webp"
+              src="/daniela-prueba.webp"
               alt="Daniela Campos, Contadora Pública en Fusagasugá"
               fill
               sizes="100vw"
@@ -350,8 +350,12 @@ export default function Hero() {
               </a>
             </div>
 
-            {/* Calculator — phones/tablets/small laptops (inline) */}
-            <div className="xl:hidden" style={{ filter: "drop-shadow(0 25px 50px rgba(0,0,0,0.6))" }}>
+            {/* Calculator — phones/tablets/small laptops (inline). data-calculator-card
+                lets the Navbar's "Renta 2026" link jump straight to whichever of the two
+                calculator instances is actually visible, instead of just the top of the
+                section (which, in this stacked mobile layout, can leave the calculator
+                itself well below the fold). */}
+            <div data-calculator-card className="xl:hidden" style={{ filter: "drop-shadow(0 25px 50px rgba(0,0,0,0.6))" }}>
               <CalculatorCard {...calcProps} />
             </div>
           </div>
@@ -372,7 +376,7 @@ export default function Hero() {
             </div>
             <div className="relative w-full overflow-hidden">
               <Image
-                src="/daniela.webp"
+                src="/daniela-prueba.webp"
                 alt="Daniela Campos, Contadora Pública en Fusagasugá"
                 width={1280}
                 height={1280}
@@ -386,6 +390,7 @@ export default function Hero() {
 
             {/* Floating calculator — anchored to the photo's own box */}
             <div
+              data-calculator-card
               className="absolute bottom-8 -left-8 w-[340px] 2xl:w-[380px] z-20"
               style={{ filter: "drop-shadow(0 25px 50px rgba(0,0,0,0.6))" }}
             >
