@@ -27,14 +27,14 @@ export default function PorQue() {
 
       {/* -- MANIFESTO -- */}
       <div className="max-w-6xl mx-auto px-6 pt-16 pb-6 md:pt-24 md:pb-8">
-        <div className="flex items-center gap-4 mb-16">
+        <div className="flex items-center gap-4 mb-10 lg:mb-16">
           <span className="font-[family-name:var(--font-inter)] text-xs text-[#C9A84C] tracking-[0.3em] uppercase">
             Por qué Daniela
           </span>
           <span className="flex-1 h-px bg-[#C9A84C]/20" />
         </div>
 
-        <div className="grid lg:grid-cols-[1fr_360px] xl:grid-cols-[1fr_420px] gap-10 xl:gap-16 items-start">
+        <div className="grid lg:grid-cols-[1fr_360px] xl:grid-cols-[1fr_420px] gap-4 lg:gap-10 xl:gap-16 items-start">
           <div className="space-y-0">
             {manifesto.map((m, i) => (
               <Reveal key={m.num} delay={i * 100}>
@@ -64,15 +64,21 @@ export default function PorQue() {
             ))}
           </div>
 
-          {/* Portrait — desktop only. A second big photo stacked above this list on
-              phones/tablets fights with the Hero photo for attention, so it stays
-              a wide-screen-only accent instead of forcing it everywhere. A different
-              shot from the same session as the Hero photo (different pose/expression),
-              so it reads as its own moment instead of a repeat. */}
-          <Reveal delay={150} className="hidden lg:block sticky top-28 self-start">
+          {/* Portrait. A different shot from the same session as the Hero photo
+              (different pose/expression), so it reads as its own moment instead of
+              a repeat. Desktop: sits in the right column. Phones/tablets: the same
+              element moves above the list (order-first), narrower and centered, and
+              its hard crop at the waist fades into the background with the signature
+              laid over the fade — so it introduces the section instead of being one
+              more big rectangle stacked between the rows. Servicios now sits between
+              this and the Hero, so the two photos no longer compete. */}
+          <Reveal
+            delay={150}
+            className="order-first lg:order-none mx-auto w-full max-w-[280px] sm:max-w-[320px] lg:max-w-none lg:mx-0 lg:sticky lg:top-28 self-start"
+          >
             <div className="group relative">
               <div aria-hidden="true" className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <div className="w-2/3 h-2/3 rounded-full bg-[#C9A84C]/10 blur-[80px]" />
+                <div className="w-2/3 h-2/3 rounded-full bg-[#C9A84C]/15 lg:bg-[#C9A84C]/10 blur-[70px] lg:blur-[80px]" />
               </div>
 
               <div className="relative aspect-[1000/1480] overflow-hidden">
@@ -80,16 +86,21 @@ export default function PorQue() {
                   src="/daniela-porque.webp"
                   alt="Daniela Campos, Contadora Pública"
                   fill
-                  sizes="420px"
+                  sizes="(min-width: 1280px) 420px, (min-width: 1024px) 360px, 320px"
                   className="object-contain object-bottom scale-100 group-hover:scale-[1.03] transition-transform duration-700 ease-out animate-photo-breathe"
+                />
+                {/* Blend the waist-level crop into the section background (<lg only) */}
+                <div
+                  aria-hidden="true"
+                  className="lg:hidden absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#081510] via-[#081510]/70 to-transparent pointer-events-none"
                 />
               </div>
 
-              <div className="relative text-center mt-5">
-                <p className="font-[family-name:var(--font-signature)] text-[#A07830] text-2xl leading-none">
+              <div className="relative text-center -mt-12 lg:mt-5">
+                <p className="font-[family-name:var(--font-signature)] text-[#C9A84C] lg:text-[#A07830] text-3xl lg:text-2xl leading-none">
                   Daniela Campos
                 </p>
-                <p className="font-[family-name:var(--font-inter)] text-[10px] text-[#EDE5D4]/50 tracking-[0.2em] uppercase mt-1.5">
+                <p className="font-[family-name:var(--font-inter)] text-[10px] text-[#EDE5D4]/60 lg:text-[#EDE5D4]/50 tracking-[0.2em] uppercase mt-1.5">
                   Contadora Pública
                 </p>
               </div>
