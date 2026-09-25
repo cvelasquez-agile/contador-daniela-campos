@@ -3,7 +3,7 @@ import { DIAN_CALENDARIO_URL } from "./site";
 export const FAQS = [
   {
     q: "¿Estoy obligado a declarar renta en 2026?",
-    a: "Debe declarar si en 2025 obtuvo ingresos brutos superiores a $59.294.000 COP (1.400 UVT), si tiene patrimonio bruto superior a $190.854.000 (4.500 UVT), si realizó consignaciones o compras acumuladas que superen esos topes, o si es responsable de IVA. También aplica si tiene bienes en el exterior. Si tiene dudas, lo más prudente es consultar antes de asumir que no está obligado.",
+    a: "Debe declarar si en el año gravable 2025 se cumplió cualquiera de estos casos: patrimonio bruto superior a $224.096.000 COP (4.500 UVT) al 31 de diciembre de 2025; ingresos brutos iguales o superiores a $69.719.000 COP (1.400 UVT) durante el año; consumos con tarjeta de crédito superiores a $69.719.000 COP; compras y consumos totales superiores a $69.719.000 COP; consignaciones bancarias o inversiones acumuladas por más de $69.719.000 COP; o ser responsable de IVA al 31 de diciembre de 2025. Si tiene dudas, lo más prudente es consultar antes de asumir que no está obligado.",
   },
   {
     q: "¿Cuándo vence mi declaración de renta 2026?",
